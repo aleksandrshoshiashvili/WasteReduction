@@ -103,7 +103,8 @@ class CreateShoppingListVC: UIViewController {
     }
     
     @objc private func handleSearchAction() {
-        
+        let vc = SearchVC.instantiate()
+        present(vc, animated: true, completion: nil)
     }
     
 }
