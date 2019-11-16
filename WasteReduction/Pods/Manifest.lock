@@ -1,0 +1,16 @@
+PODS:
+  - DynamicButton (6.2.1)
+
+DEPENDENCIES:
+  - DynamicButton (~> 6.2.1)
+
+SPEC REPOS:
+  trunk:
+    - DynamicButton
+
+SPEC CHECKSUMS:
+  DynamicButton: 95f30460793bd3510a5c213ac1b810a5e3d54b6a
+
+PODFILE CHECKSUM: 0df58a0790e772feec6917e2c54f328392d6e12d
+
+COCOAPODS: 1.8.4

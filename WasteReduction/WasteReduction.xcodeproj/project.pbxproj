@@ -3,27 +3,77 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77656C76EBA87B3C44138D99 /* Pods_WasteReduction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D2F4814F5CF81B2A7C825 /* Pods_WasteReduction.framework */; };
 		89FB5033237F2C79007A9C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5032237F2C79007A9C21 /* AppDelegate.swift */; };
 		89FB5035237F2C79007A9C21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5034237F2C79007A9C21 /* SceneDelegate.swift */; };
-		89FB5037237F2C79007A9C21 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5036237F2C79007A9C21 /* ViewController.swift */; };
+		89FB5037237F2C79007A9C21 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5036237F2C79007A9C21 /* HistoryViewController.swift */; };
 		89FB503A237F2C79007A9C21 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FB5038237F2C79007A9C21 /* Main.storyboard */; };
 		89FB503C237F2C7A007A9C21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89FB503B237F2C7A007A9C21 /* Assets.xcassets */; };
 		89FB503F237F2C7A007A9C21 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89FB503D237F2C7A007A9C21 /* LaunchScreen.storyboard */; };
+		9F0BFE59237F693300699ECB /* Cells+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE52237F693300699ECB /* Cells+Extensions.swift */; };
+		9F0BFE5A237F693300699ECB /* Collection+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE53237F693300699ECB /* Collection+Extensions.swift */; };
+		9F0BFE5B237F693300699ECB /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE54237F693300699ECB /* UIView+Extensions.swift */; };
+		9F0BFE5C237F693300699ECB /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE55237F693300699ECB /* UITextView+Extensions.swift */; };
+		9F0BFE5D237F693300699ECB /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE56237F693300699ECB /* UITextField+Extensions.swift */; };
+		9F0BFE5E237F693300699ECB /* ControllersHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE57237F693300699ECB /* ControllersHelper.swift */; };
+		9F0BFE5F237F693300699ECB /* UIViewController+ShareDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE58237F693300699ECB /* UIViewController+ShareDialog.swift */; };
+		9F0BFE63237F798200699ECB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE62237F798200699ECB /* Constants.swift */; };
+		9F0BFE66237F7A9500699ECB /* ConsumptionsStatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE65237F7A9500699ECB /* ConsumptionsStatsModel.swift */; };
+		9F0BFE6B237F7D7300699ECB /* HistoryReceiptSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE6A237F7D7300699ECB /* HistoryReceiptSectionHeaderView.swift */; };
+		9F0BFE6D237F7E5E00699ECB /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE6C237F7E5E00699ECB /* Receipt.swift */; };
+		9F0BFE6F237F7E7C00699ECB /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE6E237F7E7C00699ECB /* Product.swift */; };
+		9F0BFE73237F807C00699ECB /* HistoryProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE71237F807C00699ECB /* HistoryProductCell.swift */; };
+		9F0BFE74237F807C00699ECB /* HistoryProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F0BFE72237F807C00699ECB /* HistoryProductCell.xib */; };
+		9F0BFE78237F83AE00699ECB /* HistorySectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0BFE77237F83AE00699ECB /* HistorySectionModel.swift */; };
+		9F0BFE7A237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F0BFE79237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib */; };
+		9F44A77D237F9D23006FE2BF /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A77C237F9D23006FE2BF /* Date+Extensions.swift */; };
+		9F44A780237F9E7E006FE2BF /* ShoppingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A77F237F9E7E006FE2BF /* ShoppingListVC.swift */; };
+		9F44A782237F9F01006FE2BF /* ShadowingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A781237F9F01006FE2BF /* ShadowingView.swift */; };
+		9F44A786237FA123006FE2BF /* ShoppingListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F44A784237FA123006FE2BF /* ShoppingListTableViewCell.swift */; };
+		9F44A787237FA123006FE2BF /* ShoppingListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F44A785237FA123006FE2BF /* ShoppingListTableViewCell.xib */; };
+		9FFB0B59237F68360005E33B /* ConsumptionsStatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB0B57237F68360005E33B /* ConsumptionsStatsTableViewCell.swift */; };
+		9FFB0B5A237F68360005E33B /* ConsumptionsStatsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FFB0B58237F68360005E33B /* ConsumptionsStatsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		89FB502F237F2C79007A9C21 /* WasteReduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WasteReduction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FB5032237F2C79007A9C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89FB5034237F2C79007A9C21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		89FB5036237F2C79007A9C21 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		89FB5036237F2C79007A9C21 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		89FB5039237F2C79007A9C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		89FB503B237F2C7A007A9C21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89FB503E237F2C7A007A9C21 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89FB5040237F2C7A007A9C21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E37E2AA540FA872D3556B9A /* Pods-WasteReduction.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteReduction.debug.xcconfig"; path = "Target Support Files/Pods-WasteReduction/Pods-WasteReduction.debug.xcconfig"; sourceTree = "<group>"; };
+		9F0BFE52237F693300699ECB /* Cells+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cells+Extensions.swift"; sourceTree = "<group>"; };
+		9F0BFE53237F693300699ECB /* Collection+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+Extensions.swift"; sourceTree = "<group>"; };
+		9F0BFE54237F693300699ECB /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		9F0BFE55237F693300699ECB /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		9F0BFE56237F693300699ECB /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		9F0BFE57237F693300699ECB /* ControllersHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllersHelper.swift; sourceTree = "<group>"; };
+		9F0BFE58237F693300699ECB /* UIViewController+ShareDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ShareDialog.swift"; sourceTree = "<group>"; };
+		9F0BFE62237F798200699ECB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9F0BFE65237F7A9500699ECB /* ConsumptionsStatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionsStatsModel.swift; sourceTree = "<group>"; };
+		9F0BFE6A237F7D7300699ECB /* HistoryReceiptSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryReceiptSectionHeaderView.swift; sourceTree = "<group>"; };
+		9F0BFE6C237F7E5E00699ECB /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		9F0BFE6E237F7E7C00699ECB /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		9F0BFE71237F807C00699ECB /* HistoryProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductCell.swift; sourceTree = "<group>"; };
+		9F0BFE72237F807C00699ECB /* HistoryProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryProductCell.xib; sourceTree = "<group>"; };
+		9F0BFE77237F83AE00699ECB /* HistorySectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistorySectionModel.swift; sourceTree = "<group>"; };
+		9F0BFE79237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryReceiptSectionHeaderView.xib; sourceTree = "<group>"; };
+		9F44A77C237F9D23006FE2BF /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		9F44A77F237F9E7E006FE2BF /* ShoppingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListVC.swift; sourceTree = "<group>"; };
+		9F44A781237F9F01006FE2BF /* ShadowingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowingView.swift; sourceTree = "<group>"; };
+		9F44A784237FA123006FE2BF /* ShoppingListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListTableViewCell.swift; sourceTree = "<group>"; };
+		9F44A785237FA123006FE2BF /* ShoppingListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingListTableViewCell.xib; sourceTree = "<group>"; };
+		9FFB0B57237F68360005E33B /* ConsumptionsStatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsumptionsStatsTableViewCell.swift; sourceTree = "<group>"; };
+		9FFB0B58237F68360005E33B /* ConsumptionsStatsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConsumptionsStatsTableViewCell.xib; sourceTree = "<group>"; };
+		AF8D2F4814F5CF81B2A7C825 /* Pods_WasteReduction.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WasteReduction.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC580F234C98954A4C8EBA3B /* Pods-WasteReduction.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WasteReduction.release.xcconfig"; path = "Target Support Files/Pods-WasteReduction/Pods-WasteReduction.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77656C76EBA87B3C44138D99 /* Pods_WasteReduction.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +93,8 @@
 			children = (
 				89FB5031237F2C79007A9C21 /* WasteReduction */,
 				89FB5030237F2C79007A9C21 /* Products */,
+				BB259F03631B0D1358C54AF4 /* Pods */,
+				92A3F3E833D519A9F90E91CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +109,143 @@
 		89FB5031237F2C79007A9C21 /* WasteReduction */ = {
 			isa = PBXGroup;
 			children = (
+				9F0BFE67237F7CD300699ECB /* Scenes */,
+				9F0BFE64237F7A8900699ECB /* Models */,
+				9FFB0B5B237F68AE0005E33B /* Extensions */,
+				9F0BFE68237F7CF200699ECB /* TableViewViews */,
 				89FB5032237F2C79007A9C21 /* AppDelegate.swift */,
+				9F44A77B237F9D10006FE2BF /* Helpers */,
 				89FB5034237F2C79007A9C21 /* SceneDelegate.swift */,
-				89FB5036237F2C79007A9C21 /* ViewController.swift */,
 				89FB5038237F2C79007A9C21 /* Main.storyboard */,
 				89FB503B237F2C7A007A9C21 /* Assets.xcassets */,
 				89FB503D237F2C7A007A9C21 /* LaunchScreen.storyboard */,
 				89FB5040237F2C7A007A9C21 /* Info.plist */,
+				9F0BFE62237F798200699ECB /* Constants.swift */,
 			);
 			path = WasteReduction;
+			sourceTree = "<group>";
+		};
+		92A3F3E833D519A9F90E91CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF8D2F4814F5CF81B2A7C825 /* Pods_WasteReduction.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F0BFE64237F7A8900699ECB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F0BFE65237F7A9500699ECB /* ConsumptionsStatsModel.swift */,
+				9F0BFE6C237F7E5E00699ECB /* Receipt.swift */,
+				9F0BFE6E237F7E7C00699ECB /* Product.swift */,
+				9F0BFE77237F83AE00699ECB /* HistorySectionModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F0BFE67237F7CD300699ECB /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A77E237F9E67006FE2BF /* ShoppingList */,
+				9F0BFE76237F82BB00699ECB /* History */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		9F0BFE68237F7CF200699ECB /* TableViewViews */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A783237FA10C006FE2BF /* ShoppingListCell */,
+				9F0BFE70237F806400699ECB /* HistoryProductCell */,
+				9F0BFE69237F7CFC00699ECB /* HistoryReceiptSectionHeaderView */,
+				9FFB0B56237F68090005E33B /* ConsumptionsStatsTableViewCell */,
+			);
+			path = TableViewViews;
+			sourceTree = "<group>";
+		};
+		9F0BFE69237F7CFC00699ECB /* HistoryReceiptSectionHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				9F0BFE6A237F7D7300699ECB /* HistoryReceiptSectionHeaderView.swift */,
+				9F0BFE79237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib */,
+			);
+			path = HistoryReceiptSectionHeaderView;
+			sourceTree = "<group>";
+		};
+		9F0BFE70237F806400699ECB /* HistoryProductCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F0BFE71237F807C00699ECB /* HistoryProductCell.swift */,
+				9F0BFE72237F807C00699ECB /* HistoryProductCell.xib */,
+			);
+			path = HistoryProductCell;
+			sourceTree = "<group>";
+		};
+		9F0BFE76237F82BB00699ECB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				89FB5036237F2C79007A9C21 /* HistoryViewController.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		9F44A77B237F9D10006FE2BF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A781237F9F01006FE2BF /* ShadowingView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		9F44A77E237F9E67006FE2BF /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A77F237F9E7E006FE2BF /* ShoppingListVC.swift */,
+			);
+			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		9F44A783237FA10C006FE2BF /* ShoppingListCell */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A784237FA123006FE2BF /* ShoppingListTableViewCell.swift */,
+				9F44A785237FA123006FE2BF /* ShoppingListTableViewCell.xib */,
+			);
+			path = ShoppingListCell;
+			sourceTree = "<group>";
+		};
+		9FFB0B56237F68090005E33B /* ConsumptionsStatsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				9FFB0B57237F68360005E33B /* ConsumptionsStatsTableViewCell.swift */,
+				9FFB0B58237F68360005E33B /* ConsumptionsStatsTableViewCell.xib */,
+			);
+			path = ConsumptionsStatsTableViewCell;
+			sourceTree = "<group>";
+		};
+		9FFB0B5B237F68AE0005E33B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F44A77C237F9D23006FE2BF /* Date+Extensions.swift */,
+				9F0BFE57237F693300699ECB /* ControllersHelper.swift */,
+				9F0BFE52237F693300699ECB /* Cells+Extensions.swift */,
+				9F0BFE53237F693300699ECB /* Collection+Extensions.swift */,
+				9F0BFE56237F693300699ECB /* UITextField+Extensions.swift */,
+				9F0BFE55237F693300699ECB /* UITextView+Extensions.swift */,
+				9F0BFE54237F693300699ECB /* UIView+Extensions.swift */,
+				9F0BFE58237F693300699ECB /* UIViewController+ShareDialog.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BB259F03631B0D1358C54AF4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9E37E2AA540FA872D3556B9A /* Pods-WasteReduction.debug.xcconfig */,
+				CC580F234C98954A4C8EBA3B /* Pods-WasteReduction.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +255,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 89FB5043237F2C7A007A9C21 /* Build configuration list for PBXNativeTarget "WasteReduction" */;
 			buildPhases = (
+				49589ACC0E51BFA21C7F20C3 /* [CP] Check Pods Manifest.lock */,
 				89FB502B237F2C79007A9C21 /* Sources */,
 				89FB502C237F2C79007A9C21 /* Frameworks */,
 				89FB502D237F2C79007A9C21 /* Resources */,
+				57CA7F6541E06B4896E8E629 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,22 +308,87 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F44A787237FA123006FE2BF /* ShoppingListTableViewCell.xib in Resources */,
 				89FB503F237F2C7A007A9C21 /* LaunchScreen.storyboard in Resources */,
+				9F0BFE74237F807C00699ECB /* HistoryProductCell.xib in Resources */,
 				89FB503C237F2C7A007A9C21 /* Assets.xcassets in Resources */,
+				9F0BFE7A237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib in Resources */,
 				89FB503A237F2C79007A9C21 /* Main.storyboard in Resources */,
+				9FFB0B5A237F68360005E33B /* ConsumptionsStatsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49589ACC0E51BFA21C7F20C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WasteReduction-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		57CA7F6541E06B4896E8E629 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WasteReduction/Pods-WasteReduction-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WasteReduction/Pods-WasteReduction-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WasteReduction/Pods-WasteReduction-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		89FB502B237F2C79007A9C21 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89FB5037237F2C79007A9C21 /* ViewController.swift in Sources */,
+				9F0BFE6D237F7E5E00699ECB /* Receipt.swift in Sources */,
+				9F44A786237FA123006FE2BF /* ShoppingListTableViewCell.swift in Sources */,
+				9F0BFE73237F807C00699ECB /* HistoryProductCell.swift in Sources */,
+				9F0BFE5B237F693300699ECB /* UIView+Extensions.swift in Sources */,
+				89FB5037237F2C79007A9C21 /* HistoryViewController.swift in Sources */,
 				89FB5033237F2C79007A9C21 /* AppDelegate.swift in Sources */,
+				9F0BFE5F237F693300699ECB /* UIViewController+ShareDialog.swift in Sources */,
 				89FB5035237F2C79007A9C21 /* SceneDelegate.swift in Sources */,
+				9FFB0B59237F68360005E33B /* ConsumptionsStatsTableViewCell.swift in Sources */,
+				9F0BFE5E237F693300699ECB /* ControllersHelper.swift in Sources */,
+				9F0BFE59237F693300699ECB /* Cells+Extensions.swift in Sources */,
+				9F0BFE78237F83AE00699ECB /* HistorySectionModel.swift in Sources */,
+				9F0BFE6F237F7E7C00699ECB /* Product.swift in Sources */,
+				9F44A77D237F9D23006FE2BF /* Date+Extensions.swift in Sources */,
+				9F44A782237F9F01006FE2BF /* ShadowingView.swift in Sources */,
+				9F0BFE5D237F693300699ECB /* UITextField+Extensions.swift in Sources */,
+				9F0BFE6B237F7D7300699ECB /* HistoryReceiptSectionHeaderView.swift in Sources */,
+				9F0BFE66237F7A9500699ECB /* ConsumptionsStatsModel.swift in Sources */,
+				9F44A780237F9E7E006FE2BF /* ShoppingListVC.swift in Sources */,
+				9F0BFE5A237F693300699ECB /* Collection+Extensions.swift in Sources */,
+				9F0BFE5C237F693300699ECB /* UITextView+Extensions.swift in Sources */,
+				9F0BFE63237F798200699ECB /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +530,7 @@
 		};
 		89FB5044237F2C7A007A9C21 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E37E2AA540FA872D3556B9A /* Pods-WasteReduction.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -293,12 +542,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Junction2019.WasteReduction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		89FB5045237F2C7A007A9C21 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC580F234C98954A4C8EBA3B /* Pods-WasteReduction.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,7 +560,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Junction2019.WasteReduction;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

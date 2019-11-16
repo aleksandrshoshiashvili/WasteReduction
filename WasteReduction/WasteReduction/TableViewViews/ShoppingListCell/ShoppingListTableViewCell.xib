@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShoppingListTableViewCell" rowHeight="81" id="KGk-i7-Jjw" customClass="ShoppingListTableViewCell" customModule="WasteReduction" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="81"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="359" height="81"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BBG-1M-83M">
+                        <rect key="frame" x="16" y="8" width="327" height="65"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="mox-wf-O6N">
+                                <rect key="frame" x="295" y="24.5" width="16" height="16"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rM-Fu-8K1">
+                                <rect key="frame" x="16" y="16" width="263" height="33"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="4rM-Fu-8K1" firstAttribute="centerY" secondItem="BBG-1M-83M" secondAttribute="centerY" id="0gN-uC-A5n"/>
+                            <constraint firstAttribute="bottom" secondItem="4rM-Fu-8K1" secondAttribute="bottom" constant="16" id="0uk-Vb-0YI"/>
+                            <constraint firstItem="mox-wf-O6N" firstAttribute="centerY" secondItem="BBG-1M-83M" secondAttribute="centerY" id="2hO-ci-AEY"/>
+                            <constraint firstAttribute="trailing" secondItem="mox-wf-O6N" secondAttribute="trailing" constant="16" id="3bU-XJ-0YB"/>
+                            <constraint firstItem="mox-wf-O6N" firstAttribute="leading" secondItem="4rM-Fu-8K1" secondAttribute="trailing" constant="16" id="MsD-aW-zTg"/>
+                            <constraint firstItem="4rM-Fu-8K1" firstAttribute="leading" secondItem="BBG-1M-83M" secondAttribute="leading" constant="16" id="Txf-FA-HgP"/>
+                            <constraint firstItem="4rM-Fu-8K1" firstAttribute="top" secondItem="BBG-1M-83M" secondAttribute="top" constant="16" id="k39-Ga-6Rh"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="BBG-1M-83M" secondAttribute="trailing" constant="16" id="YvD-zx-zvH"/>
+                    <constraint firstItem="BBG-1M-83M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="aiM-VG-4sf"/>
+                    <constraint firstItem="BBG-1M-83M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="mjb-JL-puY"/>
+                    <constraint firstAttribute="bottom" secondItem="BBG-1M-83M" secondAttribute="bottom" constant="8" id="uUP-6X-HK3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="shoppingListLabel" destination="4rM-Fu-8K1" id="VgT-BS-dpd"/>
+            </connections>
+            <point key="canvasLocation" x="165.94202898550725" y="122.20982142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="right_arrow" width="16" height="16"/>
+    </resources>
+</document>

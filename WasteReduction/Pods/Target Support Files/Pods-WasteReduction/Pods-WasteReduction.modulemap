@@ -1,0 +1,6 @@
+framework module Pods_WasteReduction {
+  umbrella header "Pods-WasteReduction-umbrella.h"
+
+  export *
+  module * { export * }
+}
