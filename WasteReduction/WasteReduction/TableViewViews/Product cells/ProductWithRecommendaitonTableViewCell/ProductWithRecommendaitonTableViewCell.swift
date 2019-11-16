@@ -8,7 +8,17 @@
 
 import UIKit
 
-class ProductWithRecommendaitonViewModel: ViewModel {
+protocol ProductViewModelProtocol {
+    var id: String { get set }
+    var name: String { get set }
+    var price: Double { get set }
+    var quantity: Double { get set }
+    var carbonLevel: String { get set }
+    var isDomestic: Bool { get set }
+    var productIcon: String { get set }
+}
+
+class ProductWithRecommendaitonViewModel: ViewModel, ProductViewModelProtocol {
     
     var id: String
     var name: String
@@ -19,14 +29,16 @@ class ProductWithRecommendaitonViewModel: ViewModel {
     var recommendedTitle: String
     var recommendedProductName: String
     var recommendedProductIcon: String
+    var productIcon: String
     
-    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool, recommendedTitle: String, recommendedProductName: String, recommendedProductIcon: String) {
+    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool, productIcon: String, recommendedTitle: String, recommendedProductName: String, recommendedProductIcon: String) {
         self.id = id
         self.name = name
         self.price = price
         self.quantity = quantity
         self.carbonLevel = carbonLevel
         self.isDomestic = isDomestic
+        self.productIcon = productIcon
         self.recommendedTitle = recommendedTitle
         self.recommendedProductName = recommendedProductName
         self.recommendedProductIcon = recommendedProductIcon

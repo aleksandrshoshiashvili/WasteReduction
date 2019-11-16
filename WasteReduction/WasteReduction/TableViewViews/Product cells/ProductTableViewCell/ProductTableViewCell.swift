@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductViewModel: ViewModel {
+class ProductViewModel: ViewModel, ProductViewModelProtocol {
     
     var id: String
     var name: String

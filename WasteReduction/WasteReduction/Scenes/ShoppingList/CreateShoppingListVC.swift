@@ -45,24 +45,7 @@ class CreateShoppingListVC: UIViewController {
     @IBOutlet private weak var buttonCreate: UIButton!
     
     // MARK: - Mock data
-    
-    let dummyData = [
-        CreateShoppingListSectionModel(header: "Name", descrHeader: "", id: .name, rows: [
-            InputFieldViewModel(text: "")
-        ]),
-        CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: [
-            ProductViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-            ProductViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-            ProductWithRecommendaitonViewModel(id: "1", name: "Kefir", price: 12.5, quantity: 1, carbonLevel: "1 kg CO^2", isDomestic: true, recommendedTitle: "You can reduce Carbon level buying similar product:", recommendedProductName: "Kefir 2.0", recommendedProductIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
-            ]),
-        CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: [
-            
-            ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-            ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-            ProductViewModel(id: "1", name: "Juice", price: 1, quantity: 1, carbonLevel: "11 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
-        ])
-    ]
-    
+        
     var data: [[Product]] = [[], [.dummy, .dummy, .dummy], [.dummy, .dummy, .dummy]]
     var cellsData: [CreateShoppingListSectionModel] = []
     
@@ -71,7 +54,9 @@ class CreateShoppingListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        cellsData = dummyData
+        
+        cellsData = getViewModelsFromData()
+        
         tableView.reloadData()
         updateSaveButtonState()
         
@@ -130,14 +115,15 @@ class CreateShoppingListVC: UIViewController {
     
     private func getViewModelsFromData() -> [CreateShoppingListSectionModel] {
         
+        let addedModels = data[1].map({ $0.toViewModel })
+        let recommendedModels = data[2].map({ $0.toViewModel })
+        
         let sections = [
             CreateShoppingListSectionModel(header: "Shopping list name", descrHeader: "", id: .name, rows: [
                 InputFieldViewModel(text: "")
             ]),
-            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: [
-                ]),
-            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: [
-            ])
+            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: addedModels),
+            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: recommendedModels)
         ]
         
         return sections
@@ -158,11 +144,11 @@ class CreateShoppingListVC: UIViewController {
         vc.didSelectProduct = { [weak self] product in
             guard let self = self else { return }
             
-            var currentRows = self.cellsData[1].rows
+            var currentData = self.data[1]
+            currentData.insert(product, at: 0)
+            self.data[1] = currentData
+            self.cellsData = self.getViewModelsFromData()
             
-            let vm = product.toViewModel
-            currentRows.insert(vm, at: 0)
-            self.cellsData[1].rows = currentRows
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
             self.tableView.endUpdates()
@@ -264,6 +250,21 @@ extension CreateShoppingListVC: InputFieldTableViewCellDelegate {
     
 }
 
+// MARK: -
+
+extension CreateShoppingListVC: ProductWithRecommendaitonTableViewCellDelegate {
+    
+    func productWithRecommendaitonTableViewCellDidPressReplace(_ cell: ProductWithRecommendaitonTableViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        self.updateSaveButtonState()
+    }
+    
+}
+
 // MARK: - ProductSelectionTableViewCellDelegate
 
 extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
@@ -273,14 +274,15 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
             return
         }
         let currentData = data[indexPath.section][indexPath.row]
-        var currentRowsInSelectedSection = cellsData[indexPath.section].rows
-        currentRowsInSelectedSection.remove(at: indexPath.row)
-        cellsData[indexPath.section].rows = currentRowsInSelectedSection
+        var currentDataInSelectedSection = data[indexPath.section]
+        currentDataInSelectedSection.remove(at: indexPath.row)
+        data[indexPath.section] = currentDataInSelectedSection
      
-        let vm = currentData.toViewModel
-        var currentRowsInSecitonOne = self.cellsData[1].rows
-        currentRowsInSecitonOne.insert(vm, at: 0)
-        self.cellsData[1].rows = currentRowsInSecitonOne
+        var currentDataInSecitonOne = self.data[1]
+        currentDataInSecitonOne.insert(currentData, at: 0)
+        self.data[1] = currentDataInSecitonOne
+        
+        self.cellsData = self.getViewModelsFromData()
         
         CATransaction.begin()
         

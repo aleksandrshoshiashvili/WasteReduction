@@ -19,6 +19,9 @@ class Product: Equatable {
     var iconUrl: String
     var shouldBeAnimated: Bool = true
     
+    var recomendationTitle: String?
+    var recomendation: Product?
+    
     var state: ProductState = .none
     
     init(id: String, name: String, price: Double, quantity: Double, carbonLevel: Double = 10, isDomestic: Bool = true, iconUrl: String) {
@@ -39,17 +42,36 @@ class Product: Equatable {
 
 extension Product {
     
-    var toViewModel: ProductViewModel {
-        return ProductViewModel(id: id,
-                                name: name,
-                                price: price,
-                                quantity: quantity,
-                                carbonLevel: "\(carbonLevel)",
-            isDomestic: isDomestic, productIcon: iconUrl)
+    var toViewModel: ProductViewModelProtocol & ViewModel {
+        if let recomendation = recomendation, let recomendationTitle = recomendationTitle {
+            return ProductWithRecommendaitonViewModel(id: id,
+                                                      name: name,
+                                                      price: price,
+                                                      quantity: quantity,
+                                                      carbonLevel: "\(carbonLevel)",
+                                                      isDomestic: isDomestic,
+                                                      productIcon: iconUrl,
+                                                      recommendedTitle: recomendationTitle,
+                                                      recommendedProductName: recomendation.name,
+                                                      recommendedProductIcon: recomendation.iconUrl)
+        } else {
+            return ProductViewModel(id: id,
+                                    name: name,
+                                    price: price,
+                                    quantity: quantity,
+                                    carbonLevel: "\(carbonLevel)",
+                isDomestic: isDomestic, productIcon: iconUrl)
+        }
     }
     
     static var dummy: Product {
         return Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
+    }
+    
+    static var dummyWithRecomendation: Product {
+        let product = Product(id: UUID().uuidString, name: "Kefir", price: 1.5, quantity: 3, iconUrl: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
+        product.recomendation = .dummy
+        return product
     }
     
 }
