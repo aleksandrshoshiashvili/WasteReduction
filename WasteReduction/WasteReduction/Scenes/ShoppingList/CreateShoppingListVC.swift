@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import SwipeCellKit
 
 struct ShoppingList: Equatable {
     let id: String
@@ -56,6 +57,9 @@ class CreateShoppingListVC: UIViewController {
         setupUI()
         
         cellsData = getViewModelsFromData()
+        
+        tableView.allowsSelection = true
+        tableView.allowsMultipleSelectionDuringEditing = true
         
         tableView.reloadData()
         updateSaveButtonState()
@@ -211,6 +215,7 @@ extension CreateShoppingListVC: UITableViewDataSource {
             } else if let model = viewModel as? ProductViewModel {
                 let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
+                cell.delegate = self
                 return cell
             } else {
                 return .init()
@@ -352,6 +357,29 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
         CATransaction.commit()
         
         self.updateSaveButtonState()
+    }
+    
+}
+
+// MARK: - SwipeTableViewCellDelegate
+
+extension CreateShoppingListVC: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        guard orientation == .right else { return nil }
+        let action = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+            return
+        }
+        action.backgroundColor = .systemBackground
+        action.transitionDelegate = ScaleTransition(duration: 0.3,
+                                                    initialScale: 0.5,
+                                                    threshold: 0.5)
+
+        action.image = UIImage(named: "delete")
+        action.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        action.textColor = Constants.Colors.textColor
+        return [action]
     }
     
 }

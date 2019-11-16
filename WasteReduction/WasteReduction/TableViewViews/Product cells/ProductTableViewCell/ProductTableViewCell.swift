@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class ProductViewModel: ViewModel, ProductViewModelProtocol {
     
@@ -30,7 +31,7 @@ class ProductViewModel: ViewModel, ProductViewModelProtocol {
 }
 
 
-class ProductTableViewCell: UITableViewCell {
+class ProductTableViewCell: SwipeTableViewCell {
     
     // MARK: - Outlets
     
