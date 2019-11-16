@@ -39,9 +39,15 @@ class CreateShoppingListVC: UIViewController {
             InputFieldViewModel(text: "")
         ]),
         CreateShoppingListSectionModel(header: "Added", id: .added, rows: [
-            ProductWithRecommendaitonViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true),
-            ProductWithRecommendaitonViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false),
-            ProductWithRecommendaitonViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "10 kg CO^2", isDomestic: true)
+            ProductViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true),
+            ProductViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false),
+            ProductWithRecommendaitonViewModel(id: "1", name: "Kefir", price: 12.5, quantity: 1, carbonLevel: "1 kg CO^2", isDomestic: true, recommendedTitle: "You can reduce Carbon level buying similar product:", recommendedProductName: "Kefir 2.0", recommendedProductIcon: "")
+            ]),
+        CreateShoppingListSectionModel(header: "Recommendation", id: .recommendations, rows: [
+            
+            ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true),
+            ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false),
+            ProductViewModel(id: "1", name: "Juice", price: 1, quantity: 1, carbonLevel: "11 kg CO^2", isDomestic: true)
         ])
     ]
     
@@ -109,11 +115,11 @@ class CreateShoppingListVC: UIViewController {
             
             var currentRows = self.cellsData[1].rows
             
-            let vm = ProductWithRecommendaitonViewModel(id: product.id,
-                                                        name: product.name,
-                                                        price: product.price,
-                                                        quantity: product.quantity,
-                                                        carbonLevel: "\(product.carbonLevel)",
+            let vm = ProductViewModel(id: product.id,
+                                      name: product.name,
+                                      price: product.price,
+                                      quantity: product.quantity,
+                                      carbonLevel: "\(product.carbonLevel)",
                 isDomestic: product.isDomestic)
             currentRows.insert(vm, at: 0)
             self.cellsData[1].rows = currentRows
@@ -153,12 +159,17 @@ extension CreateShoppingListVC: UITableViewDataSource {
             cell.delegate = self
             return cell
         case .added:
-            guard let model = viewModel as? ProductWithRecommendaitonViewModel else {
+            if let model = viewModel as? ProductWithRecommendaitonViewModel {
+                let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
+                cell.configure(withProduct: model)
+                return cell
+            } else if let model = viewModel as? ProductViewModel {
+                let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
+                cell.configure(withProduct: model)
+                return cell
+            } else {
                 return .init()
             }
-            let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
-            cell.configure(withProduct: model)
-            return cell
         case .recommendations:
             guard let model = viewModel as? ProductWithRecommendaitonViewModel else {
                 return .init()
