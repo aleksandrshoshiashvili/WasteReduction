@@ -4,6 +4,10 @@
 
 import Foundation
 
+enum ProductState {
+    case wasted, utilized, done, none
+}
+
 class Product: Equatable {
     
     var id: String
@@ -13,6 +17,8 @@ class Product: Equatable {
     var carbonLevel: Double
     var isDomestic: Bool
     var shouldBeAnimated: Bool = true
+    
+    var state: ProductState = .none
     
     init(id: String, name: String, price: Double, quantity: Double, carbonLevel: Double = 10, isDomestic: Bool = true) {
         self.id = id

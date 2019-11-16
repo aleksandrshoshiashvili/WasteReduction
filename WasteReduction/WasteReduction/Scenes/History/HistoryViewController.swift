@@ -148,18 +148,19 @@ extension HistoryViewController: HistoryProductCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell),
             let receipt = cellsData[indexPath.section].receipt  else {return}
         print("Wasted: \(receipt.products[indexPath.row].name)")
+        receipt.products[indexPath.row].state = .wasted
     }
     func didSelectUtilize(fromCell cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell),
             let receipt = cellsData[indexPath.section].receipt  else {return}
         print("Utilize: \(receipt.products[indexPath.row].name)")
+        receipt.products[indexPath.row].state = .utilized
     }
     func didSelectDone(fromCell cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell),
             let receipt = cellsData[indexPath.section].receipt  else {return}
         print("Done: \(receipt.products[indexPath.row].name)")
-        
-        
+        receipt.products[indexPath.row].state = .done
         
         //debug
         let vc = ShoppingListVC.instantiate()

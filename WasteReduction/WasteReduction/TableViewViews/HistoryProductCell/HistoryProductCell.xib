@@ -51,11 +51,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3U-9g-0dE">
-                                <rect key="frame" x="8" y="56" width="77" height="34"/>
+                                <rect key="frame" x="8" y="56" width="67" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="9NT-Jq-JHt"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="8" maxX="18" maxY="8"/>
                                 <state key="normal" title="Utilize">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -71,11 +72,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33a-Rj-CHf">
-                                <rect key="frame" x="93" y="56" width="86" height="34"/>
+                                <rect key="frame" x="83" y="56" width="73" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="0fM-AW-Gmt"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="8" maxX="18" maxY="8"/>
                                 <state key="normal" title="Wasted">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -91,11 +93,12 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dWn-yT-fdf">
-                                <rect key="frame" x="187" y="56" width="71" height="34"/>
+                                <rect key="frame" x="164" y="56" width="61" height="34"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ijM-pj-Hob"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="10"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="8" maxX="18" maxY="8"/>
                                 <state key="normal" title="Done">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
