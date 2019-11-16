@@ -148,6 +148,7 @@ class CreateShoppingListVC: UIViewController {
         vc.didSelectProduct = { [weak self] product in
             guard let self = self else { return }
             
+            let previousData = self.data[1]
             var currentData = self.data[1]
             currentData.insert(product, at: 0)
             self.data[1] = currentData
@@ -155,6 +156,11 @@ class CreateShoppingListVC: UIViewController {
             
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            
+            if previousData.isEmpty, !currentData.isEmpty {
+                self.tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            }
+            
             self.tableView.endUpdates()
             self.updateSaveButtonState()
         }
@@ -211,6 +217,7 @@ extension CreateShoppingListVC: UITableViewDataSource {
                 let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
                 cell.delegate = self
+                cell.cellDelegate = self
                 return cell
             } else if let model = viewModel as? ProductViewModel {
                 let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
@@ -368,8 +375,24 @@ extension CreateShoppingListVC: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         
         guard orientation == .right else { return nil }
-        let action = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-            return
+        let action = SwipeAction(style: .destructive, title: "Delete") { [weak self] action, indexPath in
+            guard let self = self else { return }
+            
+            let previousData = self.data[indexPath.section]
+            var currentData = self.data[indexPath.section]
+            currentData.remove(at: indexPath.row)
+            self.data[indexPath.section] = currentData
+            
+            self.cellsData = self.getViewModelsFromData()
+            
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            if !previousData.isEmpty, currentData.isEmpty {
+                self.tableView.insertRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .automatic)
+            }
+            
+            self.tableView.endUpdates()
         }
         action.backgroundColor = .systemBackground
         action.transitionDelegate = ScaleTransition(duration: 0.3,

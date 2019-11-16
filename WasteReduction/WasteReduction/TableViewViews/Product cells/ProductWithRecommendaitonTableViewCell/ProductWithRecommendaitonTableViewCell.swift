@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 protocol ProductViewModelProtocol {
     var id: String { get set }
@@ -49,7 +50,7 @@ protocol ProductWithRecommendaitonTableViewCellDelegate: class {
     func productWithRecommendaitonTableViewCellDidPressReplace(_ cell: ProductWithRecommendaitonTableViewCell)
 }
 
-class ProductWithRecommendaitonTableViewCell: UITableViewCell {
+class ProductWithRecommendaitonTableViewCell: SwipeTableViewCell {
     
     // MARK: - Outlets
     
@@ -67,7 +68,7 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     
     // MARK: - Delegate
     
-    weak var delegate: ProductWithRecommendaitonTableViewCellDelegate?
+    weak var cellDelegate: ProductWithRecommendaitonTableViewCellDelegate?
     
     // MARK: - Stored
     
@@ -114,7 +115,7 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     // MARK: - Actions
     
     @IBAction private func replaceButtonAction(_ sender: UIButton) {
-        delegate?.productWithRecommendaitonTableViewCellDidPressReplace(self)
+        cellDelegate?.productWithRecommendaitonTableViewCellDidPressReplace(self)
     }
     
     @IBAction func handleChangeQuanityAction(_ sender: Any) {
