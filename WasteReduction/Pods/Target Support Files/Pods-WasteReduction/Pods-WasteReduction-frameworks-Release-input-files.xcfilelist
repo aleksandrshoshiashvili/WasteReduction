@@ -1,4 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-WasteReduction/Pods-WasteReduction-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AIFlatSwitch/AIFlatSwitch.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework
 ${BUILT_PRODUCTS_DIR}/DynamicButton/DynamicButton.framework
 ${BUILT_PRODUCTS_DIR}/Hero/Hero.framework
 ${BUILT_PRODUCTS_DIR}/Parchment/Parchment.framework

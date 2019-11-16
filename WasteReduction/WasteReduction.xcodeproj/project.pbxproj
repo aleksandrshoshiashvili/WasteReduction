@@ -14,6 +14,10 @@
 		89DF8571237FF0CF00FC9A06 /* TitleHeaderTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DF8570237FF0CF00FC9A06 /* TitleHeaderTableViewHeaderFooterView.xib */; };
 		89DF8574237FF46600FC9A06 /* InputFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF8573237FF46600FC9A06 /* InputFieldTableViewCell.swift */; };
 		89DF8576237FF47900FC9A06 /* InputFieldTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DF8575237FF47900FC9A06 /* InputFieldTableViewCell.xib */; };
+		89DF857823800D7D00FC9A06 /* ProductSearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF857723800D7D00FC9A06 /* ProductSearchAPI.swift */; };
+		89DF857A23800E4E00FC9A06 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF857923800E4E00FC9A06 /* UIImageView+Extensions.swift */; };
+		89DF857D238011BF00FC9A06 /* ProductSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF857C238011BF00FC9A06 /* ProductSelectionTableViewCell.swift */; };
+		89DF857F238011C400FC9A06 /* ProductSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DF857E238011C400FC9A06 /* ProductSelectionTableViewCell.xib */; };
 		89FB5033237F2C79007A9C21 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5032237F2C79007A9C21 /* AppDelegate.swift */; };
 		89FB5035237F2C79007A9C21 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5034237F2C79007A9C21 /* SceneDelegate.swift */; };
 		89FB5037237F2C79007A9C21 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89FB5036237F2C79007A9C21 /* HistoryViewController.swift */; };
@@ -62,6 +66,10 @@
 		89DF8570237FF0CF00FC9A06 /* TitleHeaderTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHeaderTableViewHeaderFooterView.xib; sourceTree = "<group>"; };
 		89DF8573237FF46600FC9A06 /* InputFieldTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldTableViewCell.swift; sourceTree = "<group>"; };
 		89DF8575237FF47900FC9A06 /* InputFieldTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputFieldTableViewCell.xib; sourceTree = "<group>"; };
+		89DF857723800D7D00FC9A06 /* ProductSearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSearchAPI.swift; sourceTree = "<group>"; };
+		89DF857923800E4E00FC9A06 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		89DF857C238011BF00FC9A06 /* ProductSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		89DF857E238011C400FC9A06 /* ProductSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		89FB502F237F2C79007A9C21 /* WasteReduction.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WasteReduction.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89FB5032237F2C79007A9C21 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		89FB5034237F2C79007A9C21 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +155,25 @@
 			path = InputFieldTableViewCell;
 			sourceTree = "<group>";
 		};
+		89DF857B238011A700FC9A06 /* ProductSelectionTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				89DF857C238011BF00FC9A06 /* ProductSelectionTableViewCell.swift */,
+				89DF857E238011C400FC9A06 /* ProductSelectionTableViewCell.xib */,
+			);
+			path = ProductSelectionTableViewCell;
+			sourceTree = "<group>";
+		};
+		89DF858023801A0000FC9A06 /* Product cells */ = {
+			isa = PBXGroup;
+			children = (
+				89DF857B238011A700FC9A06 /* ProductSelectionTableViewCell */,
+				89FB5050237FE5F8007A9C21 /* ProductWithRecommendaitonTableViewCell */,
+				89DF8568237FEACB00FC9A06 /* ProductTableViewCell */,
+			);
+			path = "Product cells";
+			sourceTree = "<group>";
+		};
 		89FB5026237F2C79007A9C21 = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +252,7 @@
 				9F44A788237FAACB006FE2BF /* ShoppingListModel.swift */,
 				9F0BFE6C237F7E5E00699ECB /* Receipt.swift */,
 				9F0BFE6E237F7E7C00699ECB /* Product.swift */,
+				89DF857723800D7D00FC9A06 /* ProductSearchAPI.swift */,
 				9F0BFE77237F83AE00699ECB /* HistorySectionModel.swift */,
 			);
 			path = Models;
@@ -251,8 +279,7 @@
 				9F44A783237FA10C006FE2BF /* ShoppingListCell */,
 				9F0BFE70237F806400699ECB /* HistoryProductCell */,
 				9F0BFE69237F7CFC00699ECB /* HistoryReceiptSectionHeaderView */,
-				89FB5050237FE5F8007A9C21 /* ProductWithRecommendaitonTableViewCell */,
-				89DF8568237FEACB00FC9A06 /* ProductTableViewCell */,
+				89DF858023801A0000FC9A06 /* Product cells */,
 				9FFB0B56237F68090005E33B /* ConsumptionsStatsTableViewCell */,
 			);
 			path = TableViewViews;
@@ -347,6 +374,7 @@
 				9F0BFE55237F693300699ECB /* UITextView+Extensions.swift */,
 				9F0BFE54237F693300699ECB /* UIView+Extensions.swift */,
 				9F0BFE58237F693300699ECB /* UIViewController+ShareDialog.swift */,
+				89DF857923800E4E00FC9A06 /* UIImageView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -428,6 +456,7 @@
 				89DF8571237FF0CF00FC9A06 /* TitleHeaderTableViewHeaderFooterView.xib in Resources */,
 				89FB503C237F2C7A007A9C21 /* Assets.xcassets in Resources */,
 				9F0BFE7A237F8C6500699ECB /* HistoryReceiptSectionHeaderView.xib in Resources */,
+				89DF857F238011C400FC9A06 /* ProductSelectionTableViewCell.xib in Resources */,
 				89FB503A237F2C79007A9C21 /* Main.storyboard in Resources */,
 				9F44A78E237FE721006FE2BF /* Search.storyboard in Resources */,
 				89DF8576237FF47900FC9A06 /* InputFieldTableViewCell.xib in Resources */,
@@ -489,6 +518,7 @@
 				9F0BFE6D237F7E5E00699ECB /* Receipt.swift in Sources */,
 				9F44A78C237FE6B6006FE2BF /* SearchVC.swift in Sources */,
 				89DF8574237FF46600FC9A06 /* InputFieldTableViewCell.swift in Sources */,
+				89DF857A23800E4E00FC9A06 /* UIImageView+Extensions.swift in Sources */,
 				9F44A786237FA123006FE2BF /* ShoppingListTableViewCell.swift in Sources */,
 				9F0BFE73237F807C00699ECB /* HistoryProductCell.swift in Sources */,
 				9F0BFE5B237F693300699ECB /* UIView+Extensions.swift in Sources */,
@@ -503,6 +533,7 @@
 				9F0BFE59237F693300699ECB /* Cells+Extensions.swift in Sources */,
 				9F0BFE78237F83AE00699ECB /* HistorySectionModel.swift in Sources */,
 				89FB5047237FCBFE007A9C21 /* MainVC.swift in Sources */,
+				89DF857823800D7D00FC9A06 /* ProductSearchAPI.swift in Sources */,
 				9F0BFE6F237F7E7C00699ECB /* Product.swift in Sources */,
 				9F44A77D237F9D23006FE2BF /* Date+Extensions.swift in Sources */,
 				9F44A782237F9F01006FE2BF /* ShadowingView.swift in Sources */,
@@ -513,6 +544,7 @@
 				9F44A780237F9E7E006FE2BF /* ShoppingListVC.swift in Sources */,
 				89DF856F237FF0C800FC9A06 /* TitleHeaderTableViewHeaderFooterView.swift in Sources */,
 				89FB504A237FE4DF007A9C21 /* CreateShoppingListVC.swift in Sources */,
+				89DF857D238011BF00FC9A06 /* ProductSelectionTableViewCell.swift in Sources */,
 				9F0BFE5A237F693300699ECB /* Collection+Extensions.swift in Sources */,
 				9F0BFE5C237F693300699ECB /* UITextView+Extensions.swift in Sources */,
 				89FB504D237FE5E3007A9C21 /* ProductWithRecommendaitonTableViewCell.swift in Sources */,
@@ -662,6 +694,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92465BS428;
 				INFOPLIST_FILE = WasteReduction/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -680,6 +713,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92465BS428;
 				INFOPLIST_FILE = WasteReduction/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

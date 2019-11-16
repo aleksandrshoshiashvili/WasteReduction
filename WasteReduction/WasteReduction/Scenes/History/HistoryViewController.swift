@@ -17,26 +17,26 @@ class HistoryViewController: UITableViewController {
     }
     
     static var mockProducts: [Product] {
-        return [Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3)]
+        return [Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: "")]
     }
     
     static var mockReceipt: Receipt {

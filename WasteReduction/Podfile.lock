@@ -1,24 +1,37 @@
 PODS:
+  - AIFlatSwitch (1.0.7)
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
   - DynamicButton (6.2.1)
   - Hero (1.5.0)
   - Parchment (1.7.0)
 
 DEPENDENCIES:
+  - AIFlatSwitch
+  - Alamofire
+  - AlamofireImage
   - DynamicButton (~> 6.2.1)
   - Hero
   - Parchment
 
 SPEC REPOS:
   trunk:
+    - AIFlatSwitch
+    - Alamofire
+    - AlamofireImage
     - DynamicButton
     - Hero
     - Parchment
 
 SPEC CHECKSUMS:
+  AIFlatSwitch: fd56a5e6ab8769f0b52cef815c4f071e83050352
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   DynamicButton: 95f30460793bd3510a5c213ac1b810a5e3d54b6a
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
   Parchment: cae686f73685d16742cec9c19239b7578a15f0f5
 
-PODFILE CHECKSUM: a7b8ee0d9ccfcbf2e62a1056c62fc00f13448fa6
+PODFILE CHECKSUM: 647bfde0b985cce639f461eac383b2e5cf24abe2
 
 COCOAPODS: 1.8.3

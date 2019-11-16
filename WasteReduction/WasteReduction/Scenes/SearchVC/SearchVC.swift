@@ -44,7 +44,7 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
         super.viewDidLoad()
 
         setupUI()
-        notFiltered = dummyNames.map {Product(id: UUID().uuidString, name: $0, price: 75, quantity: 1)}
+        notFiltered = dummyNames.map {Product(id: UUID().uuidString, name: $0, price: 75, quantity: 1, iconUrl: "")}
     }
     
     // MARK: - Private func

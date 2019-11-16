@@ -39,18 +39,19 @@ class CreateShoppingListVC: UIViewController {
             InputFieldViewModel(text: "")
         ]),
         CreateShoppingListSectionModel(header: "Added", id: .added, rows: [
-            ProductViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true),
-            ProductViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false),
-            ProductWithRecommendaitonViewModel(id: "1", name: "Kefir", price: 12.5, quantity: 1, carbonLevel: "1 kg CO^2", isDomestic: true, recommendedTitle: "You can reduce Carbon level buying similar product:", recommendedProductName: "Kefir 2.0", recommendedProductIcon: "")
+            ProductViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
+            ProductViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
+            ProductWithRecommendaitonViewModel(id: "1", name: "Kefir", price: 12.5, quantity: 1, carbonLevel: "1 kg CO^2", isDomestic: true, recommendedTitle: "You can reduce Carbon level buying similar product:", recommendedProductName: "Kefir 2.0", recommendedProductIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
             ]),
         CreateShoppingListSectionModel(header: "Recommendation", id: .recommendations, rows: [
             
-            ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true),
-            ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false),
-            ProductViewModel(id: "1", name: "Juice", price: 1, quantity: 1, carbonLevel: "11 kg CO^2", isDomestic: true)
+            ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
+            ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
+            ProductViewModel(id: "1", name: "Juice", price: 1, quantity: 1, carbonLevel: "11 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
         ])
     ]
     
+    var data: [[Product]] = [[], [.dummy, .dummy, .dummy], [.dummy, .dummy, .dummy]]
     var cellsData: [CreateShoppingListSectionModel] = []
     
     // MARK: - View life cycle
@@ -98,8 +99,28 @@ class CreateShoppingListVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerReuseFootHeaderViews(with: [TitleHeaderTableViewHeaderFooterView.reuseIdentifier])
-        tableView.registerCells(with: [ProductWithRecommendaitonTableViewCell.cellIdentifier, ProductTableViewCell.cellIdentifier, InputFieldTableViewCell.cellIdentifier])
+        tableView.registerCells(with: [ProductWithRecommendaitonTableViewCell.cellIdentifier,
+                                       ProductTableViewCell.cellIdentifier,
+                                       InputFieldTableViewCell.cellIdentifier,
+                                       ProductSelectionTableViewCell.cellIdentifier])
         tableView.rowHeight = UITableView.automaticDimension
+    }
+    
+    // MARK: - Prepare data
+    
+    private func getViewModelsFromData() -> [CreateShoppingListSectionModel] {
+        
+        let sections = [
+            CreateShoppingListSectionModel(header: "Shopping list name", id: .name, rows: [
+                InputFieldViewModel(text: "")
+            ]),
+            CreateShoppingListSectionModel(header: "Added", id: .added, rows: [
+                ]),
+            CreateShoppingListSectionModel(header: "Recommendation", id: .recommendations, rows: [
+            ])
+        ]
+        
+        return sections
     }
 
     // MARK: - Actions
@@ -115,12 +136,7 @@ class CreateShoppingListVC: UIViewController {
             
             var currentRows = self.cellsData[1].rows
             
-            let vm = ProductViewModel(id: product.id,
-                                      name: product.name,
-                                      price: product.price,
-                                      quantity: product.quantity,
-                                      carbonLevel: "\(product.carbonLevel)",
-                isDomestic: product.isDomestic)
+            let vm = product.toViewModel
             currentRows.insert(vm, at: 0)
             self.cellsData[1].rows = currentRows
             self.tableView.beginUpdates()
@@ -137,7 +153,7 @@ class CreateShoppingListVC: UIViewController {
 extension CreateShoppingListVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cellsData.count
+        return cellsData.filter({ !$0.rows.isEmpty }).count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -158,7 +174,7 @@ extension CreateShoppingListVC: UITableViewDataSource {
             cell.configure(with: model)
             cell.delegate = self
             return cell
-        case .added, .recommendations:
+        case .added:
             if let model = viewModel as? ProductWithRecommendaitonViewModel {
                 let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
@@ -166,6 +182,15 @@ extension CreateShoppingListVC: UITableViewDataSource {
             } else if let model = viewModel as? ProductViewModel {
                 let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
+                return cell
+            } else {
+                return .init()
+            }
+        case .recommendations:
+            if let model = viewModel as? ProductViewModel {
+                let cell = ProductSelectionTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
+                cell.configure(withProduct: model)
+                cell.delegate = self
                 return cell
             } else {
                 return .init()
@@ -205,6 +230,46 @@ extension CreateShoppingListVC: InputFieldTableViewCellDelegate {
     
     func inputFieldTableViewCellDidChangeText(_ cell: InputFieldTableViewCell, newText: String) {
         (cellsData[0].rows[0] as? InputFieldViewModel)?.text = newText
+    }
+    
+}
+
+// MARK: - ProductSelectionTableViewCellDelegate
+
+extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
+    
+    func productSelectionTableViewCellDidPressSwitch(_ cell: ProductSelectionTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        let currentData = data[indexPath.section][indexPath.row]
+        var currentRowsInSelectedSection = cellsData[indexPath.section].rows
+        currentRowsInSelectedSection.remove(at: indexPath.row)
+        cellsData[indexPath.section].rows = currentRowsInSelectedSection
+     
+        let vm = currentData.toViewModel
+        var currentRowsInSecitonOne = self.cellsData[1].rows
+        currentRowsInSecitonOne.insert(vm, at: 0)
+        self.cellsData[1].rows = currentRowsInSecitonOne
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            print("finished")
+        }
+        
+        self.tableView.beginUpdates()
+        
+        if self.cellsData[2].rows.isEmpty {
+            self.tableView.deleteSections(IndexSet(integer: 2), with: .automatic)
+        } else {
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        
+        self.tableView.endUpdates()
+        CATransaction.commit()
     }
     
 }

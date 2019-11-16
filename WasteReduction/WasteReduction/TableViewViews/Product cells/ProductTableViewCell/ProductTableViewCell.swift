@@ -1,5 +1,5 @@
 //
-//  ProductWithRecommendaitonTableViewCell.swift
+//  ProductTableViewCell.swift
 //  WasteReduction
 //
 //  Created by Alexander Shoshiashvili on 16.11.2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductWithRecommendaitonViewModel: ViewModel {
+class ProductViewModel: ViewModel {
     
     var id: String
     var name: String
@@ -16,28 +16,21 @@ class ProductWithRecommendaitonViewModel: ViewModel {
     var quantity: Double
     var carbonLevel: String
     var isDomestic: Bool
-    var recommendedTitle: String
-    var recommendedProductName: String
-    var recommendedProductIcon: String
+    var productIcon: String
     
-    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool, recommendedTitle: String, recommendedProductName: String, recommendedProductIcon: String) {
+    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool, productIcon: String) {
         self.id = id
         self.name = name
         self.price = price
         self.quantity = quantity
         self.carbonLevel = carbonLevel
         self.isDomestic = isDomestic
-        self.recommendedTitle = recommendedTitle
-        self.recommendedProductName = recommendedProductName
-        self.recommendedProductIcon = recommendedProductIcon
+        self.productIcon = productIcon
     }
 }
 
-protocol ProductWithRecommendaitonTableViewCellDelegate: class {
-    func productWithRecommendaitonTableViewCellDidPressReplace(_ cell: ProductWithRecommendaitonTableViewCell)
-}
 
-class ProductWithRecommendaitonTableViewCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
     
@@ -46,26 +39,19 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     @IBOutlet private weak var totalPriceLabel: UILabel!
     @IBOutlet private weak var detailPriceLabel: UILabel!
     @IBOutlet private weak var stepper: UIStepper!
-    @IBOutlet private weak var replaceButton: UIButton!
     @IBOutlet private weak var domesticStatusLabel: UILabel!
     @IBOutlet private weak var carbonLevelLabel: UILabel!
-    @IBOutlet private weak var recommendedTitleLabel: UILabel!
-    @IBOutlet private weak var recommendedNameLabel: UILabel!
-    @IBOutlet private weak var recommendedIconImageView: UIImageView!
-    
-    // MARK: - Delegate
-    
-    weak var delegate: ProductWithRecommendaitonTableViewCellDelegate?
     
     // MARK: - Stored
     
-    var viewModel: ProductWithRecommendaitonViewModel?
+    var viewModel: ProductViewModel?
     
     // MARK: - Reuse
     
     override func prepareForReuse() {
         super.prepareForReuse()
         alpha = 1
+        productImageView.backgroundColor = .clear
     }
     
     // MARK: - Object Lifecycle
@@ -73,19 +59,14 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        replaceButton.cornerRadius = replaceButton.bounds.height / 2.0
     }
 
     // MARK: - Interface
     
-    func configure(withProduct product: ProductWithRecommendaitonViewModel) {
+    func configure(withProduct product: ProductViewModel) {
         self.viewModel = product
         productNameLabel.text = product.name
-        recommendedTitleLabel.text = product.recommendedTitle
-        recommendedNameLabel.text = product.recommendedProductName
-        recommendedIconImageView.backgroundColor = Constants.Colors.darkBlue
-        recommendedIconImageView.cornerRadius = recommendedIconImageView.bounds.height / 2.0
-        stepper.value = product.quantity
+        productImageView.setImage(urlString: product.productIcon)
         
         if product.isDomestic {
             domesticStatusLabel.text = "Domestic 🇫🇮"
@@ -96,14 +77,12 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
         
         carbonLevelLabel.text = product.carbonLevel
         
+        stepper.value = product.quantity
+        
         recalculatePrices()
     }
     
     // MARK: - Actions
-    
-    @IBAction private func replaceButtonAction(_ sender: UIButton) {
-        delegate?.productWithRecommendaitonTableViewCellDidPressReplace(self)
-    }
     
     @IBAction func handleChangeQuanityAction(_ sender: Any) {
         viewModel?.quantity = stepper.value
