@@ -74,6 +74,11 @@ extension ShoppingListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(cellsData[indexPath.row])
+        let vc = SearchVC.instantiate()
+        vc.didSelectProduct = { product in
+            print(product.name)
+        }
+        self.present(vc, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

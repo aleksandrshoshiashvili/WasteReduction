@@ -11,6 +11,7 @@ import UIKit
 //MARK: - Add all your storyboard here
 enum StoryboardId: String {
     case Main = "Main"
+    case Search = "Search"
 }
 
 //MARK: - Add all your controllers ids here
@@ -20,12 +21,15 @@ enum ControllersId: String {
     case HistoryViewController = "HistoryViewController"
     case ShoppingListVC = "ShoppingListVC"
     case MainVC = "MainVC"
+    case SearchVC = "SearchVC"
     
     //MARK: - Populate switch case statement
     var storyboardId: StoryboardId {
         switch self {
         case .HistoryViewController, .ShoppingListVC, .MainVC:
             return .Main
+        case .SearchVC:
+            return .Search
         }
     }
 }
