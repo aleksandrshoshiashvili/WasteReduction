@@ -45,7 +45,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                        <state key="normal" title="Create">
+                                        <state key="normal" title="Create new">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -126,6 +126,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l1V-H4-Usk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-484" y="140"/>
+        </scene>
+        <!--Create Shopping ListVC-->
+        <scene sceneID="kzJ-fW-OTW">
+            <objects>
+                <viewController storyboardIdentifier="CreateShoppingListVC" id="Cn6-iG-hyP" customClass="CreateShoppingListVC" customModule="WasteReduction" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Vy-RY-8Oc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Nx6-Jg-TzX">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gr-Pw-zsG" customClass="ShadowingView" customModule="WasteReduction" customModuleProvider="target">
+                                <rect key="frame" x="16" y="782" width="382" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CS4-2H-zFL">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="createButtonAction:" destination="Cn6-iG-hyP" eventType="touchUpInside" id="bDV-Nc-sPM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="CS4-2H-zFL" firstAttribute="leading" secondItem="3gr-Pw-zsG" secondAttribute="leading" id="4Iu-kb-UZs"/>
+                                    <constraint firstItem="CS4-2H-zFL" firstAttribute="top" secondItem="3gr-Pw-zsG" secondAttribute="top" id="HGt-qc-myg"/>
+                                    <constraint firstAttribute="trailing" secondItem="CS4-2H-zFL" secondAttribute="trailing" id="Lni-Va-4ep"/>
+                                    <constraint firstAttribute="bottom" secondItem="CS4-2H-zFL" secondAttribute="bottom" id="MaB-6Q-LMw"/>
+                                    <constraint firstAttribute="height" constant="60" id="Unp-hL-54C"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="3gr-Pw-zsG" firstAttribute="leading" secondItem="MS9-f5-6o3" secondAttribute="leading" constant="16" id="47T-PF-FXe"/>
+                            <constraint firstItem="Nx6-Jg-TzX" firstAttribute="leading" secondItem="MS9-f5-6o3" secondAttribute="leading" id="4pd-Hw-iCn"/>
+                            <constraint firstItem="Nx6-Jg-TzX" firstAttribute="top" secondItem="MS9-f5-6o3" secondAttribute="top" id="B7J-Dv-MVy"/>
+                            <constraint firstAttribute="bottom" secondItem="Nx6-Jg-TzX" secondAttribute="bottom" id="GJ8-hJ-PQW"/>
+                            <constraint firstItem="MS9-f5-6o3" firstAttribute="trailing" secondItem="Nx6-Jg-TzX" secondAttribute="trailing" id="Vuh-5E-Nir"/>
+                            <constraint firstItem="MS9-f5-6o3" firstAttribute="bottom" secondItem="3gr-Pw-zsG" secondAttribute="bottom" constant="20" id="bTm-Qe-h3W"/>
+                            <constraint firstItem="MS9-f5-6o3" firstAttribute="trailing" secondItem="3gr-Pw-zsG" secondAttribute="trailing" constant="16" id="mmI-0J-u00"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MS9-f5-6o3"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonCreate" destination="CS4-2H-zFL" id="wtG-Fx-rKS"/>
+                        <outlet property="buttonShadowingView" destination="3gr-Pw-zsG" id="mzM-SS-A40"/>
+                        <outlet property="tableView" destination="Nx6-Jg-TzX" id="DNO-W4-8Cp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8LS-3V-5LB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2564" y="140"/>
         </scene>
     </scenes>
 </document>

@@ -46,7 +46,7 @@ class HistoryProductCell: UITableViewCell {
         productNameLabel.text = product.name
         let summary = product.quantity * product.price
         totalPriceLabel.text = "\(String(format: "%.2f", summary))$"
-        quantityAndSinglePriceLabel.text = "\(product.quantity) x \(product.price)$"
+        quantityAndSinglePriceLabel.text = "\(Int(product.quantity)) x \(product.price)$"
     }
     
     // MARK: - Actions
@@ -60,6 +60,5 @@ class HistoryProductCell: UITableViewCell {
     @IBAction private func doneButtonAction(_ sender: UIButton) {
         delegate?.didSelectDone(fromCell: self)
     }
-    
     
 }

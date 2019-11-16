@@ -14,7 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.tintColor = Constants.Colors.theme
+        
         return true
     }
 
