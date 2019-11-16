@@ -161,9 +161,5 @@ extension HistoryViewController: HistoryProductCellDelegate {
             let receipt = cellsData[indexPath.section].receipt  else {return}
         print("Done: \(receipt.products[indexPath.row].name)")
         receipt.products[indexPath.row].state = .done
-        
-        //debug
-        let vc = ShoppingListVC.instantiate()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
