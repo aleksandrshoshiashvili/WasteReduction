@@ -4,7 +4,7 @@
 
 import Foundation
 
-class Product {
+class Product: Equatable {
     
     var id: String
     var name: String
@@ -17,5 +17,9 @@ class Product {
         self.name = name
         self.price = price
         self.quantity = quantity
+    }
+    
+    static func ==(lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
     }
 }
