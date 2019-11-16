@@ -13,7 +13,8 @@ class ShoppingListVC: UIViewController {
     @IBOutlet private weak var buttonCreate: UIButton!
     
     // MARK: - Mock data
-    let dummyNames = ["Home" , "Work", "Kebab", "Mamba", "Vertungun", "Wroteben", "Arbaite", "Shnelia", "Schwine", "Long", "Data", "To", "Test", "Insets", "Of", "TableView"]
+    
+    var shoppingLists = ["Home" , "Work", "Kebab", "Mamba", "Vertungun", "Wroteben", "Arbaite", "Shnelia", "Schwine", "Long", "Data", "To", "Test", "Insets", "Of", "TableView"].map({ ShoppingList(id: UUID().uuidString, name: $0, products: []) })
     var cellsData: [ShoppingListModel] = []
     
     // MARK: - View life cycle
@@ -21,7 +22,7 @@ class ShoppingListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        cellsData = dummyNames.map({ ShoppingListModel(id: UUID().uuidString, name: $0) })
+        updateViewModels()
     }
     
     // MARK: - Setup UI
@@ -46,9 +47,26 @@ class ShoppingListVC: UIViewController {
     }
 
     // MARK: - Actions
+    
     @IBAction private func createButtonAction(_ sender: UIButton) {
         let vc = CreateShoppingListVC.instantiate()
+        
+        vc.didCreate = { [weak self] shoppingList in
+            guard let self = self else { return }
+            self.shoppingLists.insert(shoppingList, at: 0)
+            self.updateViewModels()
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            self.tableView.endUpdates()
+        }
+        
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: - Private
+    
+    func updateViewModels() {
+        cellsData = shoppingLists.map({ ShoppingListModel(id: UUID().uuidString, name: $0.name) })
     }
     
 }
@@ -73,12 +91,19 @@ extension ShoppingListVC: UITableViewDataSource {
 extension ShoppingListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(cellsData[indexPath.row])
-        let vc = SearchVC.instantiate()
-        vc.didSelectProduct = { product in
-            print(product.name)
+        let vc = ConcreteShoppingListVC.instantiate()
+        vc.shoppingList = shoppingLists[indexPath.row]
+        vc.didUpdated = { [weak self] shoppingList in
+            guard let self = self else { return }
+            if let index = self.shoppingLists.firstIndex(where: { $0.id == shoppingList.id }) {
+                self.shoppingLists[index] = shoppingList
+                self.updateViewModels()
+                self.tableView.beginUpdates()
+                self.tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .fade)
+                self.tableView.endUpdates()
+            }
         }
-        self.present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

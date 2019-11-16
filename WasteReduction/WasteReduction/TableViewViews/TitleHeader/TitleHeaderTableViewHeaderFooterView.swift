@@ -17,11 +17,15 @@ class TitleHeaderTableViewHeaderFooterView: UITableViewHeaderFooterView {
     // MARK: - Outlets
     
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var descrLabel: UILabel!
     
     // MARK: - Interace
     
-    func configure(withTitle title: String) {
+    func configure(withTitle title: String, descr: String? = nil) {
         titleLabel.text = title
+        descrLabel.text = descr
+        
+        descrLabel.isHidden = (descr ?? "").isEmpty
     }
 
 }

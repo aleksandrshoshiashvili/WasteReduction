@@ -192,5 +192,70 @@
             </objects>
             <point key="canvasLocation" x="2564" y="140"/>
         </scene>
+        <!--Concrete Shopping ListVC-->
+        <scene sceneID="U0t-GZ-Ku0">
+            <objects>
+                <viewController storyboardIdentifier="ConcreteShoppingListVC" id="YAI-cu-UBD" customClass="ConcreteShoppingListVC" customModule="WasteReduction" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0ch-qy-YeY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p8A-KK-G5a">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KgX-Z4-a8h" customClass="ShadowingView" customModule="WasteReduction" customModuleProvider="target">
+                                <rect key="frame" x="16" y="782" width="382" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRB-eR-MZ8">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="60"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="saveButtonAction:" destination="YAI-cu-UBD" eventType="touchUpInside" id="iL7-Gh-kMK"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LRB-eR-MZ8" firstAttribute="top" secondItem="KgX-Z4-a8h" secondAttribute="top" id="49i-dd-khj"/>
+                                    <constraint firstAttribute="bottom" secondItem="LRB-eR-MZ8" secondAttribute="bottom" id="Gnl-fR-JkI"/>
+                                    <constraint firstAttribute="height" constant="60" id="PU6-cF-QPV"/>
+                                    <constraint firstAttribute="trailing" secondItem="LRB-eR-MZ8" secondAttribute="trailing" id="QEg-XT-xpr"/>
+                                    <constraint firstItem="LRB-eR-MZ8" firstAttribute="leading" secondItem="KgX-Z4-a8h" secondAttribute="leading" id="m9T-aO-KcT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ytq-0Z-xlG" firstAttribute="trailing" secondItem="KgX-Z4-a8h" secondAttribute="trailing" constant="16" id="0Aq-cb-q7p"/>
+                            <constraint firstItem="p8A-KK-G5a" firstAttribute="top" secondItem="ytq-0Z-xlG" secondAttribute="top" id="6n0-sa-P4c"/>
+                            <constraint firstItem="KgX-Z4-a8h" firstAttribute="leading" secondItem="ytq-0Z-xlG" secondAttribute="leading" constant="16" id="D76-qz-DmS"/>
+                            <constraint firstAttribute="bottom" secondItem="p8A-KK-G5a" secondAttribute="bottom" id="El5-Oh-GcN"/>
+                            <constraint firstItem="ytq-0Z-xlG" firstAttribute="bottom" secondItem="KgX-Z4-a8h" secondAttribute="bottom" constant="20" id="Ewv-MC-oY1"/>
+                            <constraint firstItem="p8A-KK-G5a" firstAttribute="leading" secondItem="ytq-0Z-xlG" secondAttribute="leading" id="HSH-5l-yy4"/>
+                            <constraint firstItem="ytq-0Z-xlG" firstAttribute="trailing" secondItem="p8A-KK-G5a" secondAttribute="trailing" id="ZRX-7c-pY2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ytq-0Z-xlG"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSave" destination="LRB-eR-MZ8" id="KYP-jn-9xF"/>
+                        <outlet property="buttonShadowingView" destination="KgX-Z4-a8h" id="GFW-nU-2Mb"/>
+                        <outlet property="tableView" destination="p8A-KK-G5a" id="o7G-1x-vZM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e0n-Tj-iyI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3299" y="140"/>
+        </scene>
     </scenes>
 </document>

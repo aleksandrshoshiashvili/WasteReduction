@@ -12,5 +12,6 @@ target 'WasteReduction' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'AIFlatSwitch'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
   
 end

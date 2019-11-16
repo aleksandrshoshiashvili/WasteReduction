@@ -7,6 +7,13 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+
+struct ShoppingList: Equatable {
+    let id: String
+    var name: String
+    let products: [Product]
+}
 
 class ViewModel {}
 
@@ -19,6 +26,7 @@ enum CreateShoppingListSectionType: String {
 struct CreateShoppingListSectionModel {
     
     let header: String
+    let descrHeader: String?
     let id: CreateShoppingListSectionType
     var rows: [ViewModel]
     
@@ -26,6 +34,10 @@ struct CreateShoppingListSectionModel {
 
 class CreateShoppingListVC: UIViewController {
 
+    // MARK: - Handler
+    
+    var didCreate: ((_ shoppingList: ShoppingList) -> Void)?
+    
     // MARK: - Outlets
     
     @IBOutlet private weak var tableView: UITableView!
@@ -35,15 +47,15 @@ class CreateShoppingListVC: UIViewController {
     // MARK: - Mock data
     
     let dummyData = [
-        CreateShoppingListSectionModel(header: "Name", id: .name, rows: [
+        CreateShoppingListSectionModel(header: "Name", descrHeader: "", id: .name, rows: [
             InputFieldViewModel(text: "")
         ]),
-        CreateShoppingListSectionModel(header: "Added", id: .added, rows: [
+        CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: [
             ProductViewModel(id: "1", name: "Milk", price: 7, quantity: 1, carbonLevel: "30 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
             ProductViewModel(id: "1", name: "Milk", price: 1, quantity: 3, carbonLevel: "6 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
             ProductWithRecommendaitonViewModel(id: "1", name: "Kefir", price: 12.5, quantity: 1, carbonLevel: "1 kg CO^2", isDomestic: true, recommendedTitle: "You can reduce Carbon level buying similar product:", recommendedProductName: "Kefir 2.0", recommendedProductIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
             ]),
-        CreateShoppingListSectionModel(header: "Recommendation", id: .recommendations, rows: [
+        CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: [
             
             ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
             ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
@@ -61,6 +73,8 @@ class CreateShoppingListVC: UIViewController {
         setupUI()
         cellsData = dummyData
         tableView.reloadData()
+        updateSaveButtonState()
+        
         title = "Create new list"
         
         let imageSearchImage = UIImage(named: "search")?.withTintColor(Constants.Colors.theme)
@@ -106,17 +120,23 @@ class CreateShoppingListVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
     }
     
+    private func updateSaveButtonState() {
+        let nameIsEmpty = ((self.cellsData[0].rows[0] as? InputFieldViewModel)?.text ?? "").isEmpty
+        let productsIsEmpty = data[1].isEmpty
+        buttonCreate.isEnabled = !nameIsEmpty && !productsIsEmpty
+    }
+    
     // MARK: - Prepare data
     
     private func getViewModelsFromData() -> [CreateShoppingListSectionModel] {
         
         let sections = [
-            CreateShoppingListSectionModel(header: "Shopping list name", id: .name, rows: [
+            CreateShoppingListSectionModel(header: "Shopping list name", descrHeader: "", id: .name, rows: [
                 InputFieldViewModel(text: "")
             ]),
-            CreateShoppingListSectionModel(header: "Added", id: .added, rows: [
+            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: [
                 ]),
-            CreateShoppingListSectionModel(header: "Recommendation", id: .recommendations, rows: [
+            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: [
             ])
         ]
         
@@ -127,6 +147,10 @@ class CreateShoppingListVC: UIViewController {
     
     @IBAction private func createButtonAction(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
+        let name = (self.cellsData[0].rows[0] as? InputFieldViewModel)?.text ?? ""
+        let products = self.data[1]
+        let shoppingList = ShoppingList(id: UUID().uuidString, name: name, products: products)
+        didCreate?(shoppingList)
     }
     
     @objc private func handleSearchAction() {
@@ -142,6 +166,7 @@ class CreateShoppingListVC: UIViewController {
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
             self.tableView.endUpdates()
+            self.updateSaveButtonState()
         }
         present(vc, animated: true, completion: nil)
     }
@@ -153,7 +178,11 @@ class CreateShoppingListVC: UIViewController {
 extension CreateShoppingListVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cellsData.filter({ !$0.rows.isEmpty }).count
+        if cellsData[2].rows.isEmpty {
+            return cellsData.count - 1
+        } else {
+            return cellsData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -230,6 +259,7 @@ extension CreateShoppingListVC: InputFieldTableViewCellDelegate {
     
     func inputFieldTableViewCellDidChangeText(_ cell: InputFieldTableViewCell, newText: String) {
         (cellsData[0].rows[0] as? InputFieldViewModel)?.text = newText
+        self.updateSaveButtonState()
     }
     
 }
@@ -255,7 +285,14 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
         CATransaction.begin()
         
         CATransaction.setCompletionBlock {
-            print("finished")
+            let banner = FloatingNotificationBanner(title: "Item is added",
+                                                    subtitle: "\(currentData.name) is added to your shopping list",
+                style: .success)
+            banner.show(queuePosition: .front,
+                        bannerPosition: .top,
+                        cornerRadius: 12,
+                        shadowColor: UIColor.black.withAlphaComponent(0.4),
+                        shadowBlurRadius: 8)
         }
         
         self.tableView.beginUpdates()
@@ -270,6 +307,8 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
         
         self.tableView.endUpdates()
         CATransaction.commit()
+        
+        self.updateSaveButtonState()
     }
     
 }

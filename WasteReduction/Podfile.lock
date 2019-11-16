@@ -5,7 +5,12 @@ PODS:
     - Alamofire (~> 4.9)
   - DynamicButton (6.2.1)
   - Hero (1.5.0)
+  - MarqueeLabel (4.0.0)
+  - NotificationBannerSwift (3.0.2):
+    - MarqueeLabel (~> 4.0.0)
+    - SnapKit (~> 5.0.0)
   - Parchment (1.7.0)
+  - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - AIFlatSwitch
@@ -13,6 +18,7 @@ DEPENDENCIES:
   - AlamofireImage
   - DynamicButton (~> 6.2.1)
   - Hero
+  - NotificationBannerSwift (~> 3.0.0)
   - Parchment
 
 SPEC REPOS:
@@ -22,7 +28,10 @@ SPEC REPOS:
     - AlamofireImage
     - DynamicButton
     - Hero
+    - MarqueeLabel
+    - NotificationBannerSwift
     - Parchment
+    - SnapKit
 
 SPEC CHECKSUMS:
   AIFlatSwitch: fd56a5e6ab8769f0b52cef815c4f071e83050352
@@ -30,8 +39,11 @@ SPEC CHECKSUMS:
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   DynamicButton: 95f30460793bd3510a5c213ac1b810a5e3d54b6a
   Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
+  NotificationBannerSwift: 713e20f21b6105f4a36a00e5d9fa414a930d3d8e
   Parchment: cae686f73685d16742cec9c19239b7578a15f0f5
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 647bfde0b985cce639f461eac383b2e5cf24abe2
+PODFILE CHECKSUM: 42f1442e0a01bbc22c8e4b3cf5899da2fd163ca6
 
 COCOAPODS: 1.8.3
