@@ -158,7 +158,7 @@ extension CreateShoppingListVC: UITableViewDataSource {
             cell.configure(with: model)
             cell.delegate = self
             return cell
-        case .added:
+        case .added, .recommendations:
             if let model = viewModel as? ProductWithRecommendaitonViewModel {
                 let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
@@ -170,13 +170,6 @@ extension CreateShoppingListVC: UITableViewDataSource {
             } else {
                 return .init()
             }
-        case .recommendations:
-            guard let model = viewModel as? ProductWithRecommendaitonViewModel else {
-                return .init()
-            }
-            let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
-            cell.configure(withProduct: model)
-            return cell
         }
         
     }
