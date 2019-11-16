@@ -2,7 +2,18 @@
 // Using Swift 5.0
 // Running on macOS 10.15
 
-import UIKit
+import DynamicButton
+
+enum ConsumptionsStatsDirection {
+    case up, down
+
+    var dynamicButtonStyle: DynamicButton.Style {
+        switch self {
+        case .up:                       return .caretUp
+        case .down:                     return .caretDown
+        }
+    }
+}
 
 struct ConsumptionsStats {
     
@@ -11,9 +22,9 @@ struct ConsumptionsStats {
     let carbon: ConsumptionStat
     
     init(domesticDetails: String, wasteDetails: String, carbonDetails: String) {
-        self.domestic = ConsumptionStat(type: .domestic, details: domesticDetails)
-        self.waste = ConsumptionStat(type: .waste, details: wasteDetails)
-        self.carbon = ConsumptionStat(type: .carbon, details: carbonDetails)
+        self.domestic = ConsumptionStat(type: .domestic, details: domesticDetails, direction: .up)
+        self.waste = ConsumptionStat(type: .waste, details: wasteDetails, direction: .down)
+        self.carbon = ConsumptionStat(type: .carbon, details: carbonDetails, direction: .up)
     }
 }
 
@@ -21,6 +32,7 @@ struct ConsumptionStat {
     
     let type: ConsumptionType
     let details: String
+    let direction: ConsumptionsStatsDirection
 }
 
 enum ConsumptionType {

@@ -39,22 +39,25 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
         
         domesticLabel.text = model.domestic.type.title
         domesticDetailsLabel.text = model.domestic.details
+        domesticButton.setStyle(.dot, animated: true)
         wasteLabel.text = model.waste.type.title
         wasteDetailasLabel.text = model.waste.details
+        wasteButton.setStyle(.dot, animated: true)
         carbonLabel.text = model.carbon.type.title
         carbonDetailsLabel.text = model.carbon.details
+        carbonButton.setStyle(.dot, animated: true)
     }
     
     // MARK: - Animation
     
-    func animate() {
+    func animate(withModel model: ConsumptionsStats) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.domesticButton.setStyle(.caretUp, animated: true)
+            self.domesticButton.setStyle(model.domestic.direction.dynamicButtonStyle, animated: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.wasteButton.setStyle(.caretDown, animated: true)
+                self.wasteButton.setStyle(model.waste.direction.dynamicButtonStyle, animated: true)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    self.carbonButton.setStyle(.caretDown, animated: true)
+                    self.carbonButton.setStyle(model.carbon.direction.dynamicButtonStyle, animated: true)
                 }
             }
         }

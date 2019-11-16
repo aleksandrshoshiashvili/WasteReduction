@@ -20,6 +20,22 @@ class HistoryViewController: UITableViewController {
         return [Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
                 Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
                 Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
                 Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3)]
     }
     
@@ -38,19 +54,19 @@ class HistoryViewController: UITableViewController {
                                                                                                      carbonDetails: "123 kg CO2 / product")),
                                             HistorySectionModel(type: .receipt,
                                                                 receipt: HistoryViewController.mockReceipt)]
-
+    
     // MARK: - View life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerCells(with: [ConsumptionsStatsTableViewCell.cellIdentifier, HistoryProductCell.cellIdentifier])
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.registerReuseFootHeaderViews(with: [HistoryReceiptSectionHeaderView.reuseIdentifier])
     }
-
+    
     // MARK: - UITableViewDataSource
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,20 +96,33 @@ class HistoryViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
-     
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        
-        
-        guard let consumtionCell = cell as? ConsumptionsStatsTableViewCell else {
-            return
+        if (cell as? HistoryProductCell) != nil {
+            cell.layer.removeAllAnimations()
+            if let receipt = cellsData[indexPath.section].receipt {
+                let product = receipt.products[indexPath.row]
+                if product.shouldBeAnimated {
+                    product.shouldBeAnimated = false
+                    cell.alpha = 0
+                    UIView.animate(withDuration: 0.3, delay: 0.05 * Double(indexPath.row), options: .curveEaseInOut, animations: {
+                        cell.alpha = 1
+                    }, completion: nil)
+                }
+            }
         }
-        consumtionCell.animate()
+        
+        guard let consumtionCell = cell as? ConsumptionsStatsTableViewCell,
+            let model = cellsData[indexPath.section].consumptionStats else {
+                return
+        }
+        consumtionCell.animate(withModel: model)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         (tableView.cellForRow(at: indexPath) as? ConsumptionsStatsTableViewCell)?.reset()
-        (tableView.cellForRow(at: indexPath) as? ConsumptionsStatsTableViewCell)?.animate()
+        //        (tableView.cellForRow(at: indexPath) as? ConsumptionsStatsTableViewCell)?.animate()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -109,7 +138,7 @@ class HistoryViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellsData[section].heightForHeader
     }
-
+    
 }
 
 // MARK: - HistoryProductCellDelegate
@@ -130,7 +159,7 @@ extension HistoryViewController: HistoryProductCellDelegate {
             let receipt = cellsData[indexPath.section].receipt  else {return}
         print("Done: \(receipt.products[indexPath.row].name)")
         
-
+        
         
         //debug
         let vc = ShoppingListVC.instantiate()

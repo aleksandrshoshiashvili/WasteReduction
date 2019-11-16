@@ -4,18 +4,15 @@
 
 import Foundation
 
-class Product {
+class ShoppingListModel {
     
-    var id: String
+    let id: String
     var name: String
-    var price: Double
-    var quantity: Double
+    
     var shouldBeAnimated: Bool = true
     
-    init(id: String, name: String, price: Double, quantity: Double) {
+    init(id: String, name: String) {
         self.id = id
         self.name = name
-        self.price = price
-        self.quantity = quantity
     }
 }

@@ -26,6 +26,13 @@ class HistoryProductCell: UITableViewCell {
     
     weak var delegate: HistoryProductCellDelegate?
     
+    // MARK: - Reuse
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        alpha = 1
+    }
+    
     // MARK: - Object Lifecycle
     
     override func awakeFromNib() {
