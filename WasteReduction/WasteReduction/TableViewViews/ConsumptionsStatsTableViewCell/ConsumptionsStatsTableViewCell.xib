@@ -17,16 +17,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-Vn-JVW">
-                        <rect key="frame" x="16" y="8" width="446" height="295"/>
+                        <rect key="frame" x="16" y="16" width="446" height="287"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My consumption stats for month:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUP-yp-vh6">
-                                <rect key="frame" x="16" y="8" width="414" height="107"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My consumption stats for November:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUP-yp-vh6">
+                                <rect key="frame" x="16" y="12" width="414" height="95"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siI-fn-2kl">
-                                <rect key="frame" x="16" y="131" width="414" height="44"/>
+                                <rect key="frame" x="16" y="123" width="414" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LUL-ZQ-Hha">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -63,7 +63,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="as4-f1-864">
-                                <rect key="frame" x="16" y="183" width="414" height="44"/>
+                                <rect key="frame" x="16" y="175" width="414" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pCN-jr-rc0">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -100,7 +100,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHK-Ka-ckL">
-                                <rect key="frame" x="16" y="235" width="414" height="44"/>
+                                <rect key="frame" x="16" y="227" width="414" height="44"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vv0-MG-ujO">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -141,7 +141,7 @@
                         <constraints>
                             <constraint firstItem="siI-fn-2kl" firstAttribute="top" secondItem="cUP-yp-vh6" secondAttribute="bottom" constant="16" id="0nB-mx-pDH"/>
                             <constraint firstItem="XHK-Ka-ckL" firstAttribute="top" secondItem="as4-f1-864" secondAttribute="bottom" constant="8" id="GXm-m3-fOH"/>
-                            <constraint firstItem="cUP-yp-vh6" firstAttribute="top" secondItem="JfZ-Vn-JVW" secondAttribute="top" constant="8" id="NjS-Vs-EaD"/>
+                            <constraint firstItem="cUP-yp-vh6" firstAttribute="top" secondItem="JfZ-Vn-JVW" secondAttribute="top" constant="12" id="NjS-Vs-EaD"/>
                             <constraint firstAttribute="trailing" secondItem="cUP-yp-vh6" secondAttribute="trailing" constant="16" id="Qns-hX-baR"/>
                             <constraint firstItem="as4-f1-864" firstAttribute="leading" secondItem="JfZ-Vn-JVW" secondAttribute="leading" constant="16" id="RCC-Sn-swQ"/>
                             <constraint firstAttribute="bottom" secondItem="XHK-Ka-ckL" secondAttribute="bottom" constant="16" id="X9A-vh-eP3"/>
@@ -165,7 +165,7 @@
                     <constraint firstAttribute="trailing" secondItem="JfZ-Vn-JVW" secondAttribute="trailing" constant="16" id="9zr-mG-3qo"/>
                     <constraint firstItem="JfZ-Vn-JVW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SbF-tU-fDQ"/>
                     <constraint firstAttribute="bottom" secondItem="JfZ-Vn-JVW" secondAttribute="bottom" constant="16" id="Yld-iZ-G03"/>
-                    <constraint firstItem="JfZ-Vn-JVW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mdI-cr-EB9"/>
+                    <constraint firstItem="JfZ-Vn-JVW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="mdI-cr-EB9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

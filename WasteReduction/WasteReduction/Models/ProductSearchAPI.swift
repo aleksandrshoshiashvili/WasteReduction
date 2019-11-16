@@ -12,7 +12,7 @@ struct ProductSearchAPI: Codable {
     
     let name: String
     let pictureUrl: String
-    let ean: String
+    let productId: String
     let manufacturerCountry: String
 
 }
@@ -24,7 +24,7 @@ extension ProductSearchAPI {
     }
     
     var toProduct: Product {
-        return Product(id: ean,
+        return Product(id: productId,
                        name: name,
                        price: .zero,
                        quantity: .zero,

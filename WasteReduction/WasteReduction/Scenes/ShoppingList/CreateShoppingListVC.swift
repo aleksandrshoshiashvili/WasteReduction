@@ -126,8 +126,8 @@ class CreateShoppingListVC: UIViewController {
             CreateShoppingListSectionModel(header: "Shopping list name", descrHeader: "", id: .name, rows: [
                 InputFieldViewModel(text: "")
             ]),
-            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: addedModels),
-            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: recommendedModels)
+            CreateShoppingListSectionModel(header: "To buy", descrHeader: "", id: .added, rows: addedModels),
+            CreateShoppingListSectionModel(header: "Also you may need", descrHeader: "", id: .recommendations, rows: recommendedModels)
         ]
         
         return sections

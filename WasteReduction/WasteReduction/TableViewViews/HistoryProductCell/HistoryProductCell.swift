@@ -5,9 +5,9 @@
 import UIKit
 
 protocol HistoryProductCellDelegate: class {
-    func didSelectUtilize(fromCell cell: UITableViewCell)
-    func didSelectWasted(fromCell cell: UITableViewCell)
-    func didSelectDone(fromCell cell: UITableViewCell)
+    func didSelectUtilize(fromCell cell: HistoryProductCell)
+    func didSelectWasted(fromCell cell: HistoryProductCell)
+    func didSelectDone(fromCell cell: HistoryProductCell)
 }
 
 class HistoryProductCell: UITableViewCell {
@@ -50,7 +50,7 @@ class HistoryProductCell: UITableViewCell {
         configureButtons(withState: product.state)
     }
     
-    private func configureButtons(withState state: ProductState) {
+    func configureButtons(withState state: ProductState) {
         
         utilizeButton.layer.borderWidth = 2
         utilizeButton.layer.borderColor = Constants.Colors.theme.cgColor

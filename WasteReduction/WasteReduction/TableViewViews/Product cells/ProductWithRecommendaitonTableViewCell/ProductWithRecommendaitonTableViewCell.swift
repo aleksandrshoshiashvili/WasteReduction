@@ -101,7 +101,7 @@ class ProductWithRecommendaitonTableViewCell: SwipeTableViewCell {
         stepper.value = product.quantity
         
         if product.isDomestic {
-            domesticStatusLabel.text = "Domestic 🇫🇮"
+            domesticStatusLabel.text = "Local 🇫🇮"
         } else {
             domesticStatusLabel.text = nil
         }

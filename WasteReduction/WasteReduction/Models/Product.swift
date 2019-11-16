@@ -8,7 +8,7 @@ enum ProductState {
     case wasted, utilized, done, none
 }
 
-class Product: Equatable {
+class Product: Equatable, Hashable {
     
     var id: String
     var name: String
@@ -38,6 +38,10 @@ class Product: Equatable {
         return lhs.id == rhs.id
     }
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
 }
 
 extension Product {

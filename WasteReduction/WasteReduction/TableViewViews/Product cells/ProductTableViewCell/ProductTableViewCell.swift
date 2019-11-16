@@ -70,7 +70,7 @@ class ProductTableViewCell: SwipeTableViewCell {
         productImageView.setImage(urlString: product.productIcon)
         
         if product.isDomestic {
-            domesticStatusLabel.text = "Domestic 🇫🇮"
+            domesticStatusLabel.text = "Local 🇫🇮"
         } else {
             domesticStatusLabel.text = nil
         }

@@ -24,11 +24,12 @@ enum ControllersId: String {
     case SearchVC = "SearchVC"
     case CreateShoppingListVC = "CreateShoppingListVC"
     case ConcreteShoppingListVC = "ConcreteShoppingListVC"
+    case TrashMapsVC = "TrashMapsVC"
     
     //MARK: - Populate switch case statement
     var storyboardId: StoryboardId {
         switch self {
-        case .HistoryViewController, .ShoppingListVC, .MainVC, .CreateShoppingListVC, .ConcreteShoppingListVC:
+        case .HistoryViewController, .ShoppingListVC, .MainVC, .CreateShoppingListVC, .ConcreteShoppingListVC, .TrashMapsVC:
             return .Main
         case .SearchVC:
             return .Search
