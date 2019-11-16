@@ -34,7 +34,7 @@ class ShoppingListVC: UIViewController {
     private func setupTableView() {
         // 8 - spacing to bottm
         // 60 - button height
-        let newInsets = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0, bottom: view.safeAreaInsets.bottom + 8 + 60, right: 0)
+        let newInsets = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0, bottom: view.safeAreaInsets.bottom + 20 + 60, right: 0)
         tableView.contentInset = newInsets
         tableView.scrollIndicatorInsets = newInsets
         tableView.tableFooterView = UIView()

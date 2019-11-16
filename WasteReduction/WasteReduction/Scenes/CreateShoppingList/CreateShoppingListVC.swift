@@ -20,7 +20,7 @@ struct CreateShoppingListSectionModel {
     
     let header: String
     let id: CreateShoppingListSectionType
-    let rows: [ViewModel]
+    var rows: [ViewModel]
     
 }
 
@@ -84,7 +84,7 @@ class CreateShoppingListVC: UIViewController {
     private func setupTableView() {
         // 8 - spacing to bottm
         // 60 - button height
-        let newInsets = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0, bottom: view.safeAreaInsets.bottom + 8 + 60, right: 0)
+        let newInsets = UIEdgeInsets(top: view.safeAreaInsets.top, left: 0, bottom: view.safeAreaInsets.bottom + 20 + 60, right: 0)
         tableView.contentInset = newInsets
         tableView.scrollIndicatorInsets = newInsets
         tableView.tableFooterView = UIView()
@@ -104,6 +104,23 @@ class CreateShoppingListVC: UIViewController {
     
     @objc private func handleSearchAction() {
         let vc = SearchVC.instantiate()
+        vc.didSelectProduct = { [weak self] product in
+            guard let self = self else { return }
+            
+            var currentRows = self.cellsData[1].rows
+            
+            let vm = ProductWithRecommendaitonViewModel(id: product.id,
+                                                        name: product.name,
+                                                        price: product.price,
+                                                        quantity: product.quantity,
+                                                        carbonLevel: "\(product.carbonLevel)",
+                isDomestic: product.isDomestic)
+            currentRows.insert(vm, at: 0)
+            self.cellsData[1].rows = currentRows
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+            self.tableView.endUpdates()
+        }
         present(vc, animated: true, completion: nil)
     }
     

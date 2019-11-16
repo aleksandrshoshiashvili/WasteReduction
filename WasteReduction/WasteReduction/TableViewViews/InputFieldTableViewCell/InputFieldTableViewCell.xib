@@ -15,9 +15,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shopping list name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ico-kl-Enz" customClass="I">
-                        <rect key="frame" x="16" y="8" width="382" height="52"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shopping list name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ico-kl-Enz" customClass="I">
+                        <rect key="frame" x="16" y="8" width="382" height="44"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet" returnKeyType="next" smartQuotesType="no"/>
                     </textField>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgq-Nj-F0H">
@@ -31,7 +31,7 @@
                 <constraints>
                     <constraint firstItem="mgq-Nj-F0H" firstAttribute="leading" secondItem="FIB-mD-hQF" secondAttribute="leading" constant="16" id="9jL-sY-4sx"/>
                     <constraint firstItem="Ico-kl-Enz" firstAttribute="leading" secondItem="FIB-mD-hQF" secondAttribute="leading" constant="16" id="BdW-nz-jkM"/>
-                    <constraint firstItem="mgq-Nj-F0H" firstAttribute="top" secondItem="Ico-kl-Enz" secondAttribute="bottom" id="dla-LW-nPf"/>
+                    <constraint firstItem="mgq-Nj-F0H" firstAttribute="top" secondItem="Ico-kl-Enz" secondAttribute="bottom" constant="8" id="dla-LW-nPf"/>
                     <constraint firstItem="Ico-kl-Enz" firstAttribute="top" secondItem="FIB-mD-hQF" secondAttribute="top" constant="8" id="g4P-pD-hnx"/>
                     <constraint firstAttribute="bottom" secondItem="mgq-Nj-F0H" secondAttribute="bottom" constant="8" id="h0e-7v-hXS"/>
                     <constraint firstAttribute="trailing" secondItem="mgq-Nj-F0H" secondAttribute="trailing" constant="16" id="lnj-6Z-g1Y"/>

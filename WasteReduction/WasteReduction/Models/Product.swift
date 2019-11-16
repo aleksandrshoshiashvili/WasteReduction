@@ -10,13 +10,17 @@ class Product: Equatable {
     var name: String
     var price: Double
     var quantity: Double
+    var carbonLevel: Double
+    var isDomestic: Bool
     var shouldBeAnimated: Bool = true
     
-    init(id: String, name: String, price: Double, quantity: Double) {
+    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: Double = 10, isDomestic: Bool = true) {
         self.id = id
         self.name = name
         self.price = price
         self.quantity = quantity
+        self.carbonLevel = carbonLevel
+        self.isDomestic = isDomestic
     }
     
     static func ==(lhs: Product, rhs: Product) -> Bool {
