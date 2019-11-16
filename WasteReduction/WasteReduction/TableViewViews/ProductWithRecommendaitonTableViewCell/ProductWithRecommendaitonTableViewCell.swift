@@ -16,14 +16,20 @@ class ProductWithRecommendaitonViewModel: ViewModel {
     var quantity: Double
     var carbonLevel: String
     var isDomestic: Bool
+    var recommendedTitle: String
+    var recommendedProductName: String
+    var recommendedProductIcon: String
     
-    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool) {
+    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool, recommendedTitle: String, recommendedProductName: String, recommendedProductIcon: String) {
         self.id = id
         self.name = name
         self.price = price
         self.quantity = quantity
         self.carbonLevel = carbonLevel
         self.isDomestic = isDomestic
+        self.recommendedTitle = recommendedTitle
+        self.recommendedProductName = recommendedProductName
+        self.recommendedProductIcon = recommendedProductIcon
     }
 }
 
@@ -43,6 +49,9 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     @IBOutlet private weak var replaceButton: UIButton!
     @IBOutlet private weak var domesticStatusLabel: UILabel!
     @IBOutlet private weak var carbonLevelLabel: UILabel!
+    @IBOutlet private weak var recommendedTitleLabel: UILabel!
+    @IBOutlet private weak var recommendedNameLabel: UILabel!
+    @IBOutlet private weak var recommendedIconImageView: UIImageView!
     
     // MARK: - Delegate
     
@@ -64,6 +73,7 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        replaceButton.cornerRadius = replaceButton.bounds.height / 2.0
     }
 
     // MARK: - Interface
@@ -71,6 +81,21 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     func configure(withProduct product: ProductWithRecommendaitonViewModel) {
         self.viewModel = product
         productNameLabel.text = product.name
+        recommendedTitleLabel.text = product.recommendedTitle
+        recommendedNameLabel.text = product.recommendedProductName
+        recommendedIconImageView.backgroundColor = Constants.Colors.darkBlue
+        recommendedIconImageView.cornerRadius = recommendedIconImageView.bounds.height / 2.0
+        stepper.value = product.quantity
+        
+        if product.isDomestic {
+            domesticStatusLabel.text = "Domestic 🇫🇮"
+        } else {
+            domesticStatusLabel.text = nil
+        }
+        domesticStatusLabel.isHidden = !product.isDomestic
+        
+        carbonLevelLabel.text = product.carbonLevel
+        
         recalculatePrices()
     }
     
@@ -81,7 +106,7 @@ class ProductWithRecommendaitonTableViewCell: UITableViewCell {
     }
     
     @IBAction func handleChangeQuanityAction(_ sender: Any) {
-        viewModel?.quantity += 1
+        viewModel?.quantity = stepper.value
         recalculatePrices()
     }
     

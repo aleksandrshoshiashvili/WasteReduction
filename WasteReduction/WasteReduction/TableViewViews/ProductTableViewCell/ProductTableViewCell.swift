@@ -8,6 +8,26 @@
 
 import UIKit
 
+class ProductViewModel: ViewModel {
+    
+    var id: String
+    var name: String
+    var price: Double
+    var quantity: Double
+    var carbonLevel: String
+    var isDomestic: Bool
+    
+    init(id: String, name: String, price: Double, quantity: Double, carbonLevel: String, isDomestic: Bool) {
+        self.id = id
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        self.carbonLevel = carbonLevel
+        self.isDomestic = isDomestic
+    }
+}
+
+
 class ProductTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
@@ -22,7 +42,7 @@ class ProductTableViewCell: UITableViewCell {
     
     // MARK: - Stored
     
-    var viewModel: ProductWithRecommendaitonViewModel?
+    var viewModel: ProductViewModel?
     
     // MARK: - Reuse
     
@@ -40,7 +60,7 @@ class ProductTableViewCell: UITableViewCell {
 
     // MARK: - Interface
     
-    func configure(withProduct product: ProductWithRecommendaitonViewModel) {
+    func configure(withProduct product: ProductViewModel) {
         self.viewModel = product
         productNameLabel.text = product.name
         
@@ -53,13 +73,15 @@ class ProductTableViewCell: UITableViewCell {
         
         carbonLevelLabel.text = product.carbonLevel
         
+        stepper.value = product.quantity
+        
         recalculatePrices()
     }
     
     // MARK: - Actions
     
     @IBAction func handleChangeQuanityAction(_ sender: Any) {
-        viewModel?.quantity += 1
+        viewModel?.quantity = stepper.value
         recalculatePrices()
     }
     
