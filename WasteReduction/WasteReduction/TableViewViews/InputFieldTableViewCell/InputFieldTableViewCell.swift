@@ -44,6 +44,7 @@ class InputFieldTableViewCell: UITableViewCell {
         textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         underlineView.backgroundColor = Constants.Colors.theme.withAlphaComponent(0.4)
         textField.delegate = self
+        textField.tintColor = Constants.Colors.theme
         selectionStyle = .none
     }
 
