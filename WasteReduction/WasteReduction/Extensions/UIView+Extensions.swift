@@ -29,6 +29,18 @@ extension UIColor {
 }
 
 extension UIView {
+        
+    public func bindToSuperView(with insets: UIEdgeInsets = .zero) {
+      guard let superView = self.superview else { return }
+      self.translatesAutoresizingMaskIntoConstraints = false
+      
+      NSLayoutConstraint.activate([
+        self.topAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.topAnchor, constant: insets.top),
+        self.bottomAnchor.constraint(equalTo: superView.safeAreaLayoutGuide.bottomAnchor, constant: -insets.bottom),
+        self.trailingAnchor.constraint(equalTo: superView.trailingAnchor, constant: insets.right),
+        self.leadingAnchor.constraint(equalTo: superView.leadingAnchor, constant: insets.left)
+        ])
+    }
     
     @IBInspectable var borderColor: UIColor? {
         get {

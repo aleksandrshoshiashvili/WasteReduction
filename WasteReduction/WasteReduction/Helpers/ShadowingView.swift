@@ -20,10 +20,10 @@ class ShadowingView: UIView {
         
         //default shadow of this view
         layer.shadowColor = shadowColor?.cgColor ?? UIColor.black.withAlphaComponent(0.2).cgColor
-        layer.shadowOffset = shadowOffset ?? .zero
+        layer.shadowOffset = shadowOffset ?? CGSize(width: 0, height: 4)
         layer.shadowOpacity = shadowOpasity ?? 1
         layer.masksToBounds = false
-        layer.shadowRadius = shadowRadius ?? 4
+        layer.shadowRadius = shadowRadius ?? 8
         layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: shadowCornerRadius ?? 8).cgPath
     }
     

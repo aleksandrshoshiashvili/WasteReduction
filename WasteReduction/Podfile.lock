@@ -1,16 +1,24 @@
 PODS:
   - DynamicButton (6.2.1)
+  - Hero (1.5.0)
+  - Parchment (1.7.0)
 
 DEPENDENCIES:
   - DynamicButton (~> 6.2.1)
+  - Hero
+  - Parchment
 
 SPEC REPOS:
   trunk:
     - DynamicButton
+    - Hero
+    - Parchment
 
 SPEC CHECKSUMS:
   DynamicButton: 95f30460793bd3510a5c213ac1b810a5e3d54b6a
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  Parchment: cae686f73685d16742cec9c19239b7578a15f0f5
 
-PODFILE CHECKSUM: 0df58a0790e772feec6917e2c54f328392d6e12d
+PODFILE CHECKSUM: a7b8ee0d9ccfcbf2e62a1056c62fc00f13448fa6
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3

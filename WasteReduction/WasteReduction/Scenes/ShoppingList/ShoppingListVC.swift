@@ -21,13 +21,14 @@ class ShoppingListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        cellsData = dummyNames.map {ShoppingListModel(id: UUID().uuidString, name: $0)}
+        cellsData = dummyNames.map({ ShoppingListModel(id: UUID().uuidString, name: $0) })
     }
     
     // MARK: - Setup UI
     
     private func setupUI() {
         setupTableView()
+        buttonCreate.backgroundColor = Constants.Colors.theme
     }
     
     private func setupTableView() {
