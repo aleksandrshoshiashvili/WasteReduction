@@ -149,4 +149,8 @@ extension SearchVC: UITableViewDelegate {
         dismiss(animated: true, completion: dismissCompletion)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
 }
