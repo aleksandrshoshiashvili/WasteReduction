@@ -71,6 +71,7 @@ extension Product {
     static var dummyWithRecomendation: Product {
         let product = Product(id: UUID().uuidString, name: "Kefir", price: 1.5, quantity: 3, iconUrl: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
         product.recomendation = .dummy
+        product.recomendationTitle = "You can reduce Carbon level buying similar product:"
         return product
     }
     

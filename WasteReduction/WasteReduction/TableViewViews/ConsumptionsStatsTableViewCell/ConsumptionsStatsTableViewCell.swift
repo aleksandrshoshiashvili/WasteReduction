@@ -13,6 +13,7 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var domesticButtonContainerView: UIView!
     private var domesticButton: DynamicButton!
     @IBOutlet weak var domesticLabel: UILabel!
@@ -73,6 +74,8 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
     
     private func setup() {
         
+        containerView.applyShadow()
+        
         configure(button: &domesticButton, container: domesticButtonContainerView, color: Constants.Colors.lightYellow)
         configure(button: &wasteButton, container: wasteButtonContainerView, color: Constants.Colors.darkBlue)
         configure(button: &carbonButton, container: carbonButtonContainerView, color: Constants.Colors.pinkRed)
@@ -89,7 +92,7 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
         button!.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button!.layer.cornerRadius = 22
         button!.layer.masksToBounds = true
-        button!.backgroundColor = .darkGray
+        button!.backgroundColor = .systemGray6
         button!.lineWidth = 4
         button!.strokeColor = color
         button!.constraintToSuperViewEdges()

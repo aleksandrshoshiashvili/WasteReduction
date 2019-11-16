@@ -8,6 +8,7 @@
 
 import UIKit
 import Parchment
+import Hero
 
 public class MainVC: UIViewController {
   
@@ -30,10 +31,14 @@ public class MainVC: UIViewController {
     self.pagingViewController = pagingViewController
     
     setupOptions()
+    
+    navigationController?.isHeroEnabled = true
+    navigationController?.heroNavigationAnimationType = .autoReverse(presenting: .zoom)
   }
   
   public override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(true, animated: true)
   }
   
   public override func viewDidAppear(_ animated: Bool) {

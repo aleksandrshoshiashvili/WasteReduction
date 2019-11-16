@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import Hero
 
 class ConcreteShoppingListVC: UIViewController {
 
@@ -25,7 +26,7 @@ class ConcreteShoppingListVC: UIViewController {
     
     // MARK: - Mock data
     
-    var data: [[Product]] = [[], [.dummy, .dummy, .dummy], [.dummy, .dummy, .dummy]]
+    var data: [[Product]] = [[], [.dummy, .dummy, .dummyWithRecomendation], [.dummy, .dummy, .dummy]]
     var cellsData: [CreateShoppingListSectionModel] = []
     
     var sumText: String? {
@@ -43,22 +44,7 @@ class ConcreteShoppingListVC: UIViewController {
         setupUI()
         
         changedShoppingList = shoppingList
-        
-        let dummyData = [
-            CreateShoppingListSectionModel(header: "Name", descrHeader: nil, id: .name, rows: [
-                InputFieldViewModel(text: shoppingList.name)
-            ]),
-            CreateShoppingListSectionModel(header: "Added", descrHeader: sumText, id: .added,
-                                           rows: shoppingList.products.map({ $0.toViewModel })),
-            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: nil, id: .recommendations, rows: [
-                
-                ProductViewModel(id: "1", name: "Milk", price: 70, quantity: 5, carbonLevel: "6 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-                ProductViewModel(id: "1", name: "Coca-Cola", price: 15, quantity: 1, carbonLevel: "5 kg CO^2", isDomestic: false, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492"),
-                ProductViewModel(id: "1", name: "Juice", price: 1, quantity: 1, carbonLevel: "11 kg CO^2", isDomestic: true, productIcon: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
-            ])
-        ]
-        
-        cellsData = dummyData
+        cellsData = self.getViewModelsFromData()
         tableView.reloadData()
         updateSaveButtonState()
         
@@ -120,14 +106,15 @@ class ConcreteShoppingListVC: UIViewController {
     
     private func getViewModelsFromData() -> [CreateShoppingListSectionModel] {
         
+        let addedModels = data[1].map({ $0.toViewModel })
+        let recommendedModels = data[2].map({ $0.toViewModel })
+        
         let sections = [
             CreateShoppingListSectionModel(header: "Shopping list name", descrHeader: "", id: .name, rows: [
-                InputFieldViewModel(text: "")
+                InputFieldViewModel(text: changedShoppingList.name)
             ]),
-            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: [
-                ]),
-            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: [
-            ])
+            CreateShoppingListSectionModel(header: "Added", descrHeader: "", id: .added, rows: addedModels),
+            CreateShoppingListSectionModel(header: "Recommendation", descrHeader: "", id: .recommendations, rows: recommendedModels)
         ]
         
         return sections
@@ -145,11 +132,11 @@ class ConcreteShoppingListVC: UIViewController {
         vc.didSelectProduct = { [weak self] product in
             guard let self = self else { return }
             
-            var currentRows = self.cellsData[1].rows
+            var currentData = self.data[1]
+            currentData.insert(product, at: 0)
+            self.data[1] = currentData
+            self.cellsData = self.getViewModelsFromData()
             
-            let vm = product.toViewModel
-            currentRows.insert(vm, at: 0)
-            self.cellsData[1].rows = currentRows
             self.tableView.beginUpdates()
             self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
             self.tableView.endUpdates()
@@ -173,12 +160,25 @@ extension ConcreteShoppingListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellsData[section].rows.count
+        let itemsCount = cellsData[section].rows.count
+        if section == 1, itemsCount == 0 {
+            return 1
+        } else {
+            return itemsCount
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = cellsData[indexPath.section]
+        
+        guard !section.rows.isEmpty else {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = "You can add items by pressing search icon or by choosing recommended items"
+            cell.textLabel?.numberOfLines = 0
+            return cell
+        }
+        
         let viewModel = section.rows[indexPath.row]
         
         switch section.id {
@@ -194,6 +194,7 @@ extension ConcreteShoppingListVC: UITableViewDataSource {
             if let model = viewModel as? ProductWithRecommendaitonViewModel {
                 let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
+                cell.delegate = self
                 return cell
             } else if let model = viewModel as? ProductViewModel {
                 let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
@@ -253,6 +254,43 @@ extension ConcreteShoppingListVC: InputFieldTableViewCellDelegate {
     
 }
 
+// MARK: - ProductWithRecommendaitonTableViewCellDelegate
+
+extension ConcreteShoppingListVC: ProductWithRecommendaitonTableViewCellDelegate {
+    
+    func productWithRecommendaitonTableViewCellDidPressReplace(_ cell: ProductWithRecommendaitonTableViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let currentData = data[indexPath.section][indexPath.row]
+        data[indexPath.section][indexPath.row] = currentData.recomendation!
+        cellsData = getViewModelsFromData()
+        
+        changedShoppingList.products = data[indexPath.section]
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            let banner = FloatingNotificationBanner(title: "Item is changed",
+                                                    subtitle: "\(currentData.name) is added to \(currentData.recomendation!.name)", style: .success)
+            banner.show(queuePosition: .front,
+                        bannerPosition: .top,
+                        cornerRadius: 12,
+                        shadowColor: UIColor.black.withAlphaComponent(0.4),
+                        shadowBlurRadius: 8)
+        }
+        
+        self.tableView.beginUpdates()
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        self.tableView.endUpdates()
+        CATransaction.commit()
+        
+        self.updateSaveButtonState()
+    }
+    
+}
 // MARK: - ProductSelectionTableViewCellDelegate
 
 extension ConcreteShoppingListVC: ProductSelectionTableViewCellDelegate {
@@ -262,14 +300,18 @@ extension ConcreteShoppingListVC: ProductSelectionTableViewCellDelegate {
             return
         }
         let currentData = data[indexPath.section][indexPath.row]
-        var currentRowsInSelectedSection = cellsData[indexPath.section].rows
-        currentRowsInSelectedSection.remove(at: indexPath.row)
-        cellsData[indexPath.section].rows = currentRowsInSelectedSection
+        var currentDataInSelectedSection = data[indexPath.section]
+        currentDataInSelectedSection.remove(at: indexPath.row)
+        data[indexPath.section] = currentDataInSelectedSection
      
-        let vm = currentData.toViewModel
-        var currentRowsInSecitonOne = self.cellsData[1].rows
-        currentRowsInSecitonOne.insert(vm, at: 0)
-        self.cellsData[1].rows = currentRowsInSecitonOne
+        let previousDataInSecitonOne = self.data[1]
+        var currentDataInSecitonOne = self.data[1]
+        currentDataInSecitonOne.insert(currentData, at: 0)
+        self.data[1] = currentDataInSecitonOne
+        
+        changedShoppingList.products = currentDataInSecitonOne
+        
+        self.cellsData = self.getViewModelsFromData()
         
         CATransaction.begin()
         
@@ -292,9 +334,10 @@ extension ConcreteShoppingListVC: ProductSelectionTableViewCellDelegate {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
-        let sectionVM = cellsData[1]
-        let title = sectionVM.header
-        (self.tableView.headerView(forSection: 1) as? TitleHeaderTableViewHeaderFooterView)?.configure(withTitle: title, descr: sumText)
+        if previousDataInSecitonOne.isEmpty, !currentDataInSecitonOne.isEmpty {
+            self.tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
+        }
+        
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
         
         self.tableView.endUpdates()

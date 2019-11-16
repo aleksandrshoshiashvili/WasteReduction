@@ -12,7 +12,7 @@ import NotificationBannerSwift
 struct ShoppingList: Equatable {
     let id: String
     var name: String
-    let products: [Product]
+    var products: [Product]
 }
 
 class ViewModel {}
@@ -46,7 +46,7 @@ class CreateShoppingListVC: UIViewController {
     
     // MARK: - Mock data
         
-    var data: [[Product]] = [[], [.dummy, .dummy, .dummy], [.dummy, .dummy, .dummy]]
+    var data: [[Product]] = [[], [], [.dummy, .dummy, .dummy]]
     var cellsData: [CreateShoppingListSectionModel] = []
     
     // MARK: - View life cycle
@@ -172,12 +172,25 @@ extension CreateShoppingListVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellsData[section].rows.count
+        let itemsCount = cellsData[section].rows.count
+        if section == 1, itemsCount == 0 {
+            return 1
+        } else {
+            return itemsCount
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = cellsData[indexPath.section]
+        
+        guard !section.rows.isEmpty else {
+            let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+            cell.textLabel?.text = "You can add items by pressing search icon or by choosing recommended items"
+            cell.textLabel?.numberOfLines = 0
+            return cell
+        }
+        
         let viewModel = section.rows[indexPath.row]
         
         switch section.id {
@@ -193,6 +206,7 @@ extension CreateShoppingListVC: UITableViewDataSource {
             if let model = viewModel as? ProductWithRecommendaitonViewModel {
                 let cell = ProductWithRecommendaitonTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
                 cell.configure(withProduct: model)
+                cell.delegate = self
                 return cell
             } else if let model = viewModel as? ProductViewModel {
                 let cell = ProductTableViewCell.dequeueFromTableView(tableView, indexPath: indexPath)
@@ -250,7 +264,7 @@ extension CreateShoppingListVC: InputFieldTableViewCellDelegate {
     
 }
 
-// MARK: -
+// MARK: - ProductWithRecommendaitonTableViewCellDelegate
 
 extension CreateShoppingListVC: ProductWithRecommendaitonTableViewCellDelegate {
     
@@ -259,6 +273,28 @@ extension CreateShoppingListVC: ProductWithRecommendaitonTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else {
             return
         }
+        
+        let currentData = data[indexPath.section][indexPath.row]
+        data[indexPath.section][indexPath.row] = currentData.recomendation!
+        cellsData = getViewModelsFromData()
+        
+        CATransaction.begin()
+        
+        CATransaction.setCompletionBlock {
+            let banner = FloatingNotificationBanner(title: "Item is changed",
+                                                    subtitle: "\(currentData.name) is added to \(currentData.recomendation!.name)",
+                style: .success)
+            banner.show(queuePosition: .front,
+                        bannerPosition: .top,
+                        cornerRadius: 12,
+                        shadowColor: UIColor.black.withAlphaComponent(0.4),
+                        shadowBlurRadius: 8)
+        }
+        
+        self.tableView.beginUpdates()
+        self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        self.tableView.endUpdates()
+        CATransaction.commit()
         
         self.updateSaveButtonState()
     }
@@ -278,6 +314,7 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
         currentDataInSelectedSection.remove(at: indexPath.row)
         data[indexPath.section] = currentDataInSelectedSection
      
+        let previousDataInSecitonOne = self.data[1]
         var currentDataInSecitonOne = self.data[1]
         currentDataInSecitonOne.insert(currentData, at: 0)
         self.data[1] = currentDataInSecitonOne
@@ -303,6 +340,10 @@ extension CreateShoppingListVC: ProductSelectionTableViewCellDelegate {
             self.tableView.deleteSections(IndexSet(integer: 2), with: .automatic)
         } else {
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        if previousDataInSecitonOne.isEmpty, !currentDataInSecitonOne.isEmpty {
+            self.tableView.deleteRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)
         }
         
         self.tableView.insertRows(at: [IndexPath(row: 0, section: 1)], with: .automatic)

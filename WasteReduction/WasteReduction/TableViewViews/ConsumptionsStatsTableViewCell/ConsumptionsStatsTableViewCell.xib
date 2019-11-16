@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,14 +10,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ConsumptionsStatsTableViewCell" rowHeight="303" id="KGk-i7-Jjw" customClass="ConsumptionsStatsTableViewCell" customModule="WasteReduction" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="478" height="303"/>
+            <rect key="frame" x="0.0" y="0.0" width="478" height="319"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="478" height="303"/>
+                <rect key="frame" x="0.0" y="0.0" width="478" height="319"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-Vn-JVW">
-                        <rect key="frame" x="16" y="8" width="446" height="287"/>
+                        <rect key="frame" x="16" y="8" width="446" height="295"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My consumption stats for month:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUP-yp-vh6">
                                 <rect key="frame" x="16" y="8" width="414" height="107"/>
@@ -144,7 +144,7 @@
                             <constraint firstItem="cUP-yp-vh6" firstAttribute="top" secondItem="JfZ-Vn-JVW" secondAttribute="top" constant="8" id="NjS-Vs-EaD"/>
                             <constraint firstAttribute="trailing" secondItem="cUP-yp-vh6" secondAttribute="trailing" constant="16" id="Qns-hX-baR"/>
                             <constraint firstItem="as4-f1-864" firstAttribute="leading" secondItem="JfZ-Vn-JVW" secondAttribute="leading" constant="16" id="RCC-Sn-swQ"/>
-                            <constraint firstAttribute="bottom" secondItem="XHK-Ka-ckL" secondAttribute="bottom" constant="8" id="X9A-vh-eP3"/>
+                            <constraint firstAttribute="bottom" secondItem="XHK-Ka-ckL" secondAttribute="bottom" constant="16" id="X9A-vh-eP3"/>
                             <constraint firstItem="siI-fn-2kl" firstAttribute="leading" secondItem="JfZ-Vn-JVW" secondAttribute="leading" constant="16" id="o7r-7G-vgT"/>
                             <constraint firstItem="XHK-Ka-ckL" firstAttribute="leading" secondItem="JfZ-Vn-JVW" secondAttribute="leading" constant="16" id="oeF-V1-bP4"/>
                             <constraint firstAttribute="trailing" secondItem="siI-fn-2kl" secondAttribute="trailing" constant="16" id="qKT-Q3-ONo"/>
@@ -164,7 +164,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="JfZ-Vn-JVW" secondAttribute="trailing" constant="16" id="9zr-mG-3qo"/>
                     <constraint firstItem="JfZ-Vn-JVW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="SbF-tU-fDQ"/>
-                    <constraint firstAttribute="bottom" secondItem="JfZ-Vn-JVW" secondAttribute="bottom" constant="8" id="Yld-iZ-G03"/>
+                    <constraint firstAttribute="bottom" secondItem="JfZ-Vn-JVW" secondAttribute="bottom" constant="16" id="Yld-iZ-G03"/>
                     <constraint firstItem="JfZ-Vn-JVW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="mdI-cr-EB9"/>
                 </constraints>
             </tableViewCellContentView>
@@ -173,6 +173,7 @@
                 <outlet property="carbonButtonContainerView" destination="vv0-MG-ujO" id="5IQ-Kl-thJ"/>
                 <outlet property="carbonDetailsLabel" destination="rWa-eT-KIK" id="3CC-Zx-JK1"/>
                 <outlet property="carbonLabel" destination="brZ-ml-QvP" id="bzf-7F-MLn"/>
+                <outlet property="containerView" destination="JfZ-Vn-JVW" id="9AU-O7-Mkf"/>
                 <outlet property="domesticButtonContainerView" destination="LUL-ZQ-Hha" id="Q2n-nq-QZB"/>
                 <outlet property="domesticDetailsLabel" destination="Ejv-C8-hP8" id="WBf-dN-Aus"/>
                 <outlet property="domesticLabel" destination="f1p-Yy-RAh" id="N79-fA-KD3"/>
