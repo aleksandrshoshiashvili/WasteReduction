@@ -53,11 +53,11 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
     
     func animate(withModel model: ConsumptionsStats) {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.domesticButton.setStyle(model.domestic.direction.dynamicButtonStyle, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                 self.wasteButton.setStyle(model.waste.direction.dynamicButtonStyle, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     self.carbonButton.setStyle(model.carbon.direction.dynamicButtonStyle, animated: true)
                 }
             }
