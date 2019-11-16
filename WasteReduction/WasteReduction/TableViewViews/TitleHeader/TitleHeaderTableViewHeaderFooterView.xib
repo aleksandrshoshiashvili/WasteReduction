@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="eds-Um-19t" customClass="TitleHeaderTableViewHeaderFooterView" customModule="WasteReduction" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVR-pS-QgL">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBR-N3-QvW">
+                    <rect key="frame" x="16" y="8" width="382" height="28"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="AVR-pS-QgL" secondAttribute="bottom" id="Ard-lE-GNH"/>
+                <constraint firstItem="AVR-pS-QgL" firstAttribute="leading" secondItem="eds-Um-19t" secondAttribute="leading" id="Pp2-bl-89W"/>
+                <constraint firstAttribute="trailing" secondItem="XBR-N3-QvW" secondAttribute="trailing" constant="16" id="TBv-aA-DSB"/>
+                <constraint firstItem="XBR-N3-QvW" firstAttribute="leading" secondItem="eds-Um-19t" secondAttribute="leading" constant="16" id="agz-oK-NBz"/>
+                <constraint firstItem="AVR-pS-QgL" firstAttribute="top" secondItem="eds-Um-19t" secondAttribute="top" id="jRf-aE-MWL"/>
+                <constraint firstAttribute="bottom" secondItem="XBR-N3-QvW" secondAttribute="bottom" constant="8" id="kod-rR-h9a"/>
+                <constraint firstItem="XBR-N3-QvW" firstAttribute="top" secondItem="eds-Um-19t" secondAttribute="top" constant="8" id="r0O-zd-5Dw"/>
+                <constraint firstAttribute="trailing" secondItem="AVR-pS-QgL" secondAttribute="trailing" id="trT-rL-0fE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="XBR-N3-QvW" id="0fe-bU-DTj"/>
+            </connections>
+            <point key="canvasLocation" x="66.666666666666671" y="317.41071428571428"/>
+        </view>
+    </objects>
+</document>

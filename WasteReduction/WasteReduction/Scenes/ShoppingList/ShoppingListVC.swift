@@ -47,8 +47,8 @@ class ShoppingListVC: UIViewController {
 
     // MARK: - Actions
     @IBAction private func createButtonAction(_ sender: UIButton) {
-        //debug
-        self.navigationController?.popViewController(animated: true)
+        let vc = CreateShoppingListVC.instantiate()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
