@@ -40,7 +40,7 @@ enum ConsumptionType {
     
     var title: String {
         switch self {
-        case .domestic:                 return "Domestic"
+        case .domestic:                 return "Local food"
         case .waste:                    return "Waste"
         case .carbon:                   return "Carbon"
         }
@@ -48,7 +48,7 @@ enum ConsumptionType {
     
     var shortTitle: String {
         switch self {
-        case .domestic:                 return "D:"
+        case .domestic:                 return "L:"
         case .waste:                    return "W:"
         case .carbon:                   return "C:"
         }

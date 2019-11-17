@@ -140,7 +140,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="dEV-RG-HXo" secondAttribute="trailing" id="1Ca-GQ-Fg4"/>
-                        <constraint firstAttribute="bottom" secondItem="dEV-RG-HXo" secondAttribute="bottom" id="RKr-F7-9ek"/>
+                        <constraint firstAttribute="bottom" secondItem="dEV-RG-HXo" secondAttribute="bottom" constant="-6" id="RKr-F7-9ek"/>
                         <constraint firstItem="dEV-RG-HXo" firstAttribute="top" secondItem="Xnu-bq-zGz" secondAttribute="top" id="sYW-Bv-k4f"/>
                         <constraint firstItem="dEV-RG-HXo" firstAttribute="leading" secondItem="Xnu-bq-zGz" secondAttribute="leading" id="vxI-w9-XjF"/>
                     </constraints>

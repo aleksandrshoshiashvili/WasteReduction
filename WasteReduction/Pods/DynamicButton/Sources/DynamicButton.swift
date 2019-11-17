@@ -171,6 +171,7 @@ between each style changes.
         let anim       = animationWithKeyPath(config.keyPath, damping: 10)
         anim.fromValue = config.layer.path
         anim.toValue   = config.newValue
+        anim.duration = 0.15
 
         config.layer.add(anim, forKey: config.key)
       }

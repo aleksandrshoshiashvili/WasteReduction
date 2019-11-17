@@ -16,8 +16,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBR-N3-QvW">
-                    <rect key="frame" x="16" y="8" width="382" height="28"/>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QEh-oZ-e4b">
+                    <rect key="frame" x="358.5" y="8" width="39.5" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBR-N3-QvW">
+                    <rect key="frame" x="16" y="8" width="42.5" height="28"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -25,9 +31,12 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="QEh-oZ-e4b" firstAttribute="top" secondItem="eds-Um-19t" secondAttribute="top" constant="8" id="9aZ-JM-9OT"/>
                 <constraint firstAttribute="bottom" secondItem="AVR-pS-QgL" secondAttribute="bottom" id="Ard-lE-GNH"/>
+                <constraint firstAttribute="bottom" secondItem="QEh-oZ-e4b" secondAttribute="bottom" constant="8" id="EAL-RA-CmU"/>
                 <constraint firstItem="AVR-pS-QgL" firstAttribute="leading" secondItem="eds-Um-19t" secondAttribute="leading" id="Pp2-bl-89W"/>
-                <constraint firstAttribute="trailing" secondItem="XBR-N3-QvW" secondAttribute="trailing" constant="16" id="TBv-aA-DSB"/>
+                <constraint firstAttribute="trailing" secondItem="QEh-oZ-e4b" secondAttribute="trailing" constant="16" id="RsR-sk-PB3"/>
+                <constraint firstItem="QEh-oZ-e4b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="XBR-N3-QvW" secondAttribute="trailing" constant="16" id="YOq-TE-QUc"/>
                 <constraint firstItem="XBR-N3-QvW" firstAttribute="leading" secondItem="eds-Um-19t" secondAttribute="leading" constant="16" id="agz-oK-NBz"/>
                 <constraint firstItem="AVR-pS-QgL" firstAttribute="top" secondItem="eds-Um-19t" secondAttribute="top" id="jRf-aE-MWL"/>
                 <constraint firstAttribute="bottom" secondItem="XBR-N3-QvW" secondAttribute="bottom" constant="8" id="kod-rR-h9a"/>
@@ -36,9 +45,10 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="descrLabel" destination="QEh-oZ-e4b" id="b66-BC-GhK"/>
                 <outlet property="titleLabel" destination="XBR-N3-QvW" id="0fe-bU-DTj"/>
             </connections>
-            <point key="canvasLocation" x="66.666666666666671" y="317.41071428571428"/>
+            <point key="canvasLocation" x="65.599999999999994" y="316.64167916041981"/>
         </view>
     </objects>
 </document>

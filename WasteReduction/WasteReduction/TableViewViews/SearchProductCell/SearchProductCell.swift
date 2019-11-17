@@ -16,6 +16,7 @@ class SearchProductCell: UITableViewCell {
     
     func configure(withProduct product: Product) {
         
+        productImageView.setImage(urlString: product.iconUrl)
         productNameLabel.text = product.name
         productPriceLabel.text = String(format: "%.2f", product.price) + "$"
     }

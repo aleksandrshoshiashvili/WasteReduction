@@ -82,6 +82,15 @@ extension UIView {
         }
     }
     
+    @IBInspectable var isApplyShadow: Bool {
+        get {
+            return self.layer.shadowColor != nil
+        }
+        set {
+            self.applyShadow()
+        }
+    }
+    
     func round(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
@@ -122,9 +131,9 @@ extension UIView {
     }
 
     func applyShadow() {
-        layer.shadowColor = UIColor(R: 81, G: 81, B: 81, A: 0.4).cgColor
-        layer.shadowRadius = 12.0
-        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowColor = UIColor(R: 81, G: 81, B: 81, A: 0.3).cgColor
+        layer.shadowRadius = 4.0
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowOpacity = 1.0
         clipsToBounds = false
     }

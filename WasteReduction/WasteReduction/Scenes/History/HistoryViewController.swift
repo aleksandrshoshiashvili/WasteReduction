@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import Alamofire
 
-class HistoryViewController: UITableViewController {
+class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    var feedbackEntries: Set<Product> = []
+    
+    // MARK: - Outlets
+    
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var buttonShadowingView: ShadowingView!
+    @IBOutlet private weak var buttonCreate: UIButton!
     
     // MARK: - Mock data
     
@@ -17,26 +26,26 @@ class HistoryViewController: UITableViewController {
     }
     
     static var mockProducts: [Product] {
-        return [Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3),
-                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1),
-                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2),
-                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5),
-                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3)]
+        return [Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Gre4a", price: 99.99, quantity: 2, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Milk", price: 2, quantity: 2.5, iconUrl: ""),
+                Product(id: UUID().uuidString, name: "Strawberry", price: 3, quantity: 1.3, iconUrl: "")]
     }
     
     static var mockReceipt: Receipt {
@@ -64,12 +73,56 @@ class HistoryViewController: UITableViewController {
         tableView.registerCells(with: [ConsumptionsStatsTableViewCell.cellIdentifier, HistoryProductCell.cellIdentifier])
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.registerReuseFootHeaderViews(with: [HistoryReceiptSectionHeaderView.reuseIdentifier])
+        
+        NetworkService.shared.request(router: .recommendations) { (result: Result<[RecommendationAPI]>) in
+            switch result {
+            case .success(let recommendations):
+                print(recommendations)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    // MARK: - Actions
+
+    @IBAction private func sendFeedback(_ sender: UIButton) {
+        if feedbackEntries.contains(where: { $0.state == ProductState.utilized }) {
+            let optionAlert = UIAlertController(title: "How would you rather utilize your products?",
+                                                message: nil,
+                                                preferredStyle: .actionSheet)
+            
+            let manuallyAction = UIAlertAction(title: "Find location", style: .default) { _ in
+                let vc = TrashMapsVC.instantiate()
+                self.present(vc, animated: true, completion: nil)
+            }
+            optionAlert.addAction(manuallyAction)
+            
+            let automaticallyAction = UIAlertAction(title: "Post on Facebook", style: .default) { _ in
+                let facebookAlert = UIAlertController(title: "Successfully posted!",
+                                                      message: "Post about your products successfully posted on Facebook group.",
+                                                      preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Great!", style: .cancel, handler: nil)
+                facebookAlert.addAction(okAction)
+                facebookAlert.view.tintColor = Constants.Colors.theme
+                self.present(facebookAlert, animated: true, completion: nil)
+            }
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            optionAlert.addAction(cancelAction)
+            
+            optionAlert.addAction(automaticallyAction)
+            optionAlert.view.tintColor = Constants.Colors.theme
+            self.present(optionAlert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - UITableViewDataSource
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = cellsData[indexPath.section].cellType.dequeueFromTableView(tableView, indexPath: indexPath)
         
@@ -87,17 +140,17 @@ class HistoryViewController: UITableViewController {
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return cellsData.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellsData[section].cellsCount
     }
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         if (cell as? HistoryProductCell) != nil {
             cell.layer.removeAllAnimations()
@@ -120,12 +173,12 @@ class HistoryViewController: UITableViewController {
         consumtionCell.animate(withModel: model)
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         (tableView.cellForRow(at: indexPath) as? ConsumptionsStatsTableViewCell)?.reset()
         //        (tableView.cellForRow(at: indexPath) as? ConsumptionsStatsTableViewCell)?.animate()
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = cellsData[section].headerViewType?.instantiateView()
         if let receiptHeaderView = view as? HistoryReceiptSectionHeaderView,
@@ -135,7 +188,7 @@ class HistoryViewController: UITableViewController {
         return view
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellsData[section].heightForHeader
     }
     
@@ -144,22 +197,45 @@ class HistoryViewController: UITableViewController {
 // MARK: - HistoryProductCellDelegate
 
 extension HistoryViewController: HistoryProductCellDelegate {
-    func didSelectWasted(fromCell cell: UITableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell),
-            let receipt = cellsData[indexPath.section].receipt  else {return}
-        print("Wasted: \(receipt.products[indexPath.row].name)")
-        receipt.products[indexPath.row].state = .wasted
+    func didSelectWasted(fromCell cell: HistoryProductCell) {
+        updateState(toState: .wasted, cell: cell)
     }
-    func didSelectUtilize(fromCell cell: UITableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell),
-            let receipt = cellsData[indexPath.section].receipt  else {return}
-        print("Utilize: \(receipt.products[indexPath.row].name)")
-        receipt.products[indexPath.row].state = .utilized
+    func didSelectUtilize(fromCell cell: HistoryProductCell) {
+        updateState(toState: .utilized, cell: cell)
     }
-    func didSelectDone(fromCell cell: UITableViewCell) {
+    func didSelectDone(fromCell cell: HistoryProductCell) {
+        updateState(toState: .done, cell: cell)
+    }
+    
+    private func updateState(toState state: ProductState, cell: HistoryProductCell) {
         guard let indexPath = tableView.indexPath(for: cell),
-            let receipt = cellsData[indexPath.section].receipt  else {return}
-        print("Done: \(receipt.products[indexPath.row].name)")
-        receipt.products[indexPath.row].state = .done
+            let receipt = cellsData[indexPath.section].receipt else { return }
+        
+        print("\(receipt.products[indexPath.row].name)")
+//        if receipt.products[indexPath.row].state == ProductState.none  {
+//            receipt.products[indexPath.row].state = state
+//            cell.configureButtons(withState: state)
+//            feedbackEntries.append(receipt.products[indexPath.row])
+//            tableView.beginUpdates()
+//            tableView.endUpdates()
+//        } else if receipt.products[indexPath.row].state == state {
+//            receipt.products[indexPath.row].state = .none
+//            cell.configureButtons(withState: .none)
+//            if feedbackEntries.contains(receipt.products[indexPath.row]) {
+//                feedbackEntries.delete(element: receipt.products[indexPath.row])
+//            }
+//        } else {
+//
+//        }
+        receipt.products[indexPath.row].state = state
+        cell.configureButtons(withState: state)
+        feedbackEntries.insert(receipt.products[indexPath.row])
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        updateSendFeedbackButtonState()
+    }
+    
+    private func updateSendFeedbackButtonState() {
+        buttonShadowingView.isHidden = feedbackEntries.isEmpty
     }
 }

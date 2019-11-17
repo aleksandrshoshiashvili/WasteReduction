@@ -9,5 +9,10 @@ target 'WasteReduction' do
   pod 'DynamicButton', '~> 6.2.1'
   pod 'Parchment'
   pod 'Hero'
+  pod 'Alamofire'
+  pod 'AlamofireImage'
+  pod 'AIFlatSwitch'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
+  pod 'SwipeCellKit'
   
 end

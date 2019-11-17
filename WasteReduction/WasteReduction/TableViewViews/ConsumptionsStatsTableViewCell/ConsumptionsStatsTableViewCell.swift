@@ -13,6 +13,7 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
 
     // MARK: - Outlets
     
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var domesticButtonContainerView: UIView!
     private var domesticButton: DynamicButton!
     @IBOutlet weak var domesticLabel: UILabel!
@@ -52,11 +53,11 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
     
     func animate(withModel model: ConsumptionsStats) {
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.domesticButton.setStyle(model.domestic.direction.dynamicButtonStyle, animated: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                 self.wasteButton.setStyle(model.waste.direction.dynamicButtonStyle, animated: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
                     self.carbonButton.setStyle(model.carbon.direction.dynamicButtonStyle, animated: true)
                 }
             }
@@ -72,6 +73,8 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
     // MARK: - Private
     
     private func setup() {
+        
+        containerView.applyShadow()
         
         configure(button: &domesticButton, container: domesticButtonContainerView, color: Constants.Colors.lightYellow)
         configure(button: &wasteButton, container: wasteButtonContainerView, color: Constants.Colors.darkBlue)
@@ -89,7 +92,7 @@ class ConsumptionsStatsTableViewCell: UITableViewCell {
         button!.contentEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         button!.layer.cornerRadius = 22
         button!.layer.masksToBounds = true
-        button!.backgroundColor = .darkGray
+        button!.backgroundColor = .systemGray6
         button!.lineWidth = 4
         button!.strokeColor = color
         button!.constraintToSuperViewEdges()
