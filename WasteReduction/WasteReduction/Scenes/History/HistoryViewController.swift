@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -75,6 +76,15 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerReuseFootHeaderViews(with: [HistoryReceiptSectionHeaderView.reuseIdentifier])
+        
+        NetworkService.shared.request(router: .recommendations) { (result: Result<[RecommendationAPI]>) in
+            switch result {
+            case .success(let recommendations):
+                print(recommendations)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     // MARK: - Actions

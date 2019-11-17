@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		77656C76EBA87B3C44138D99 /* Pods_WasteReduction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D2F4814F5CF81B2A7C825 /* Pods_WasteReduction.framework */; };
+		894B3E6C2381141300D4D0B6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B3E6B2381141300D4D0B6 /* NetworkService.swift */; };
+		894B3E6E2381152200D4D0B6 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B3E6D2381152200D4D0B6 /* APIRouter.swift */; };
+		894B3E702381193600D4D0B6 /* RecommendationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B3E6F2381193600D4D0B6 /* RecommendationAPI.swift */; };
+		894B3E7223811B8B00D4D0B6 /* ReceiptAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B3E7123811B8B00D4D0B6 /* ReceiptAPI.swift */; };
+		894B3E7423811B9500D4D0B6 /* ReceiptItemAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894B3E7323811B9500D4D0B6 /* ReceiptItemAPI.swift */; };
 		8969C8C62380763A0097D5F7 /* TrashMapsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8969C8C52380763A0097D5F7 /* TrashMapsVC.swift */; };
 		89DF856A237FEAF800FC9A06 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF8569237FEAF800FC9A06 /* ProductTableViewCell.swift */; };
 		89DF856C237FEC5A00FC9A06 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DF856B237FEC5A00FC9A06 /* ProductTableViewCell.xib */; };
@@ -62,6 +67,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		894B3E6B2381141300D4D0B6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		894B3E6D2381152200D4D0B6 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		894B3E6F2381193600D4D0B6 /* RecommendationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationAPI.swift; sourceTree = "<group>"; };
+		894B3E7123811B8B00D4D0B6 /* ReceiptAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptAPI.swift; sourceTree = "<group>"; };
+		894B3E7323811B9500D4D0B6 /* ReceiptItemAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptItemAPI.swift; sourceTree = "<group>"; };
 		8969C8C52380763A0097D5F7 /* TrashMapsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrashMapsVC.swift; sourceTree = "<group>"; };
 		89DF8569237FEAF800FC9A06 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		89DF856B237FEC5A00FC9A06 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
@@ -132,6 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		894B3E6A238113FC00D4D0B6 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				894B3E6B2381141300D4D0B6 /* NetworkService.swift */,
+				894B3E6D2381152200D4D0B6 /* APIRouter.swift */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
 		8969C8C72380763D0097D5F7 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +226,7 @@
 		89FB5031237F2C79007A9C21 /* WasteReduction */ = {
 			isa = PBXGroup;
 			children = (
+				894B3E6A238113FC00D4D0B6 /* NetworkLayer */,
 				9F0BFE67237F7CD300699ECB /* Scenes */,
 				9F0BFE64237F7A8900699ECB /* Models */,
 				9FFB0B5B237F68AE0005E33B /* Extensions */,
@@ -266,6 +286,9 @@
 				9F0BFE6C237F7E5E00699ECB /* Receipt.swift */,
 				9F0BFE6E237F7E7C00699ECB /* Product.swift */,
 				89DF857723800D7D00FC9A06 /* ProductSearchAPI.swift */,
+				894B3E6F2381193600D4D0B6 /* RecommendationAPI.swift */,
+				894B3E7123811B8B00D4D0B6 /* ReceiptAPI.swift */,
+				894B3E7323811B9500D4D0B6 /* ReceiptItemAPI.swift */,
 				9F0BFE77237F83AE00699ECB /* HistorySectionModel.swift */,
 			);
 			path = Models;
@@ -548,6 +571,7 @@
 				9F0BFE59237F693300699ECB /* Cells+Extensions.swift in Sources */,
 				9F0BFE78237F83AE00699ECB /* HistorySectionModel.swift in Sources */,
 				89FB5047237FCBFE007A9C21 /* MainVC.swift in Sources */,
+				894B3E7223811B8B00D4D0B6 /* ReceiptAPI.swift in Sources */,
 				89DF857823800D7D00FC9A06 /* ProductSearchAPI.swift in Sources */,
 				9F0BFE6F237F7E7C00699ECB /* Product.swift in Sources */,
 				9F44A77D237F9D23006FE2BF /* Date+Extensions.swift in Sources */,
@@ -561,7 +585,11 @@
 				89DF856F237FF0C800FC9A06 /* TitleHeaderTableViewHeaderFooterView.swift in Sources */,
 				89FB504A237FE4DF007A9C21 /* CreateShoppingListVC.swift in Sources */,
 				89DF857D238011BF00FC9A06 /* ProductSelectionTableViewCell.swift in Sources */,
+				894B3E702381193600D4D0B6 /* RecommendationAPI.swift in Sources */,
 				9F0BFE5A237F693300699ECB /* Collection+Extensions.swift in Sources */,
+				894B3E7423811B9500D4D0B6 /* ReceiptItemAPI.swift in Sources */,
+				894B3E6E2381152200D4D0B6 /* APIRouter.swift in Sources */,
+				894B3E6C2381141300D4D0B6 /* NetworkService.swift in Sources */,
 				9F0BFE5C237F693300699ECB /* UITextView+Extensions.swift in Sources */,
 				89FB504D237FE5E3007A9C21 /* ProductWithRecommendaitonTableViewCell.swift in Sources */,
 				9F0BFE63237F798200699ECB /* Constants.swift in Sources */,

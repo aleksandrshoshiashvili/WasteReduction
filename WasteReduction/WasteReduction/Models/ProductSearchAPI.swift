@@ -14,6 +14,11 @@ struct ProductSearchAPI: Codable {
     let pictureUrl: String
     let productId: String
     let manufacturerCountry: String
+    let isWasted: Bool
+    let isFinished: Bool
+    let co2: String?
+    let price: Double?
+    let quantity: Int?
 
 }
 
@@ -28,7 +33,7 @@ extension ProductSearchAPI {
                        name: name,
                        price: .zero,
                        quantity: .zero,
-                       carbonLevel: .zero,
+                       carbonLevel: Double(co2 ?? "") ?? .zero,
                        isDomestic: isDomestic,
                        iconUrl: pictureUrl)
     }
