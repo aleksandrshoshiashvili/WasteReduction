@@ -11,8 +11,8 @@ import UIKit
 struct ReceiptItemAPI: Codable {
     
     let receiptItemId: Int
-    let quantity: Int
-    let price: Double
+    var quantity: Int
+    var price: Double
     let productId: String
     let product: ProductSearchAPI
 

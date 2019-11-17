@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
+
 
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -18,6 +20,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var buttonShadowingView: ShadowingView!
     @IBOutlet private weak var buttonCreate: UIButton!
+    
+//    private var acitvityIndicatorView: NVActivityIndicatorView!
     
     // MARK: - Mock data
     
@@ -69,6 +73,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.acitvityIndicatorView = NVActivityIndicatorView(frame: UIScreen.main.bounds, type: .ballPulse, color: Constants.Colors.lightYellow, padding: .zero)
+        
         tableView.rowHeight = UITableView.automaticDimension
         tableView.registerCells(with: [ConsumptionsStatsTableViewCell.cellIdentifier, HistoryProductCell.cellIdentifier])
         tableView.tableFooterView = UIView()
@@ -83,7 +89,9 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         
-        NetworkService.shared.request(router: .recommendations) { (result: Result<APIResult<[RecommendationAPI]>>) in
+        self.showActivityIndicator()
+        NetworkService.shared.request(router: .receipts) { (result: Result<APIResult<[ReceiptAPI]>>) in
+            self.stopAnimating()
             switch result {
             case .success(let recommendations):
                 print(recommendations)
@@ -250,4 +258,98 @@ extension HistoryViewController: HistoryProductCellDelegate {
     private func updateSendFeedbackButtonState() {
         buttonShadowingView.isHidden = feedbackEntries.isEmpty
     }
+}
+
+
+import NVActivityIndicatorView
+
+// MARK: - NVActivityIndicatorViewable
+
+extension UIViewController: NVActivityIndicatorViewable {
+  
+  private struct AssociatedKeys {
+    static var isIndicatorShowed = false
+    static var activityLoadingIndicator: NVActivityIndicatorView?
+  }
+  
+  var isIndicatorShowed: Bool {
+    get {
+      return (objc_getAssociatedObject(self, &AssociatedKeys.isIndicatorShowed) as? Bool) ?? false
+    }
+    set {
+      objc_setAssociatedObject(
+        self,
+        &AssociatedKeys.isIndicatorShowed,
+        newValue as Bool,
+        .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+      )
+    }
+  }
+  
+  func showActivityIndicator() {
+    let bcgrColor = UIColor.black.withAlphaComponent(0.5)
+    let indicatorSize = CGSize(width: 100, height: 100)
+    let indicatorColor = Constants.Colors.theme
+    
+    let type: NVActivityIndicatorType = .ballScale
+    startAnimating(indicatorSize, message: nil, messageFont: nil, type: type, color: indicatorColor, padding: nil, displayTimeThreshold: nil, minimumDisplayTime: nil, backgroundColor: bcgrColor, textColor: nil)
+    isIndicatorShowed = true
+  }
+  
+  func hideActivityIndicator() {
+    if isIndicatorShowed {
+      stopAnimating()
+      isIndicatorShowed = false
+    }
+  }
+  
+  // MARK: In view
+  
+  var activityLoadingIndicator: NVActivityIndicatorView? {
+    get {
+      guard let indicator = (objc_getAssociatedObject(self, &AssociatedKeys.activityLoadingIndicator) as? NVActivityIndicatorView) else {
+        return nil
+      }
+      return indicator
+    }
+    set {
+      objc_setAssociatedObject(
+        self,
+        &AssociatedKeys.activityLoadingIndicator,
+        newValue,
+        .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+      )
+    }
+  }
+  
+  func showActivityIndicatorInView() {
+    view.isUserInteractionEnabled = false
+    
+    if let indicator = activityLoadingIndicator {
+      view.bringSubviewToFront(indicator)
+      indicator.startAnimating()
+    } else {
+      let indicatorSize = CGSize(width: 50, height: 50)
+    let indicatorColor = Constants.Colors.theme
+      
+      let type: NVActivityIndicatorType = .ballClipRotate
+      
+      let viewCenter = CGPoint(x: UIScreen.main.bounds.width / 2.0, y: UIScreen.main.bounds.height / 2.0)
+      let indicatorFrame = CGRect(x: viewCenter.x - indicatorSize.width / 2.0,
+                                  y: viewCenter.y - indicatorSize.height / 2.0 - 2 * (UIScreen.main.bounds.height - view.frame.height),
+                                  width: indicatorSize.width,
+                                  height: indicatorSize.height)
+      
+      let indicatorView = NVActivityIndicatorView(frame: indicatorFrame, type: type, color: indicatorColor, padding: nil)
+      activityLoadingIndicator = indicatorView
+      view.addSubview(indicatorView)
+      indicatorView.startAnimating()
+    }
+  }
+  
+  func hideActivityIndicatorInView() {
+    view.isUserInteractionEnabled = true
+    activityLoadingIndicator?.stopAnimating()
+  }
+  
 }

@@ -10,8 +10,20 @@ import UIKit
 
 struct ProductSearchAPI: Codable {
     
-    let name: String
-    let pictureUrl: String
+    var name: String? {
+        willSet {
+            if newValue == nil {
+                name = "Product"
+            }
+        }
+    }
+    var pictureUrl: String? {
+        willSet {
+            if newValue == nil {
+                pictureUrl = "https://www.mv.org.ua/image/news_small/2015/06/06_073953_81923.jpg"
+            }
+        }
+    }
     let productId: String
     let manufacturerCountry: String?
     let isWasted: Bool
@@ -30,12 +42,12 @@ extension ProductSearchAPI {
     
     var toProduct: Product {
         return Product(id: productId,
-                       name: name,
+                       name: name ?? "Product",
                        price: price ?? .zero,
                        quantity: Double(quantity ?? 0),
                        carbonLevel: Double(co2 ?? "") ?? .zero,
                        isDomestic: isDomestic,
-                       iconUrl: pictureUrl)
+                       iconUrl: pictureUrl ?? "https://www.mv.org.ua/image/news_small/2015/06/06_073953_81923.jpg")
     }
     
 }
