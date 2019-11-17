@@ -42,7 +42,7 @@ enum APIRouter: URLRequestConvertible {
     private var path: String {
         switch self {
         case .recommendations:
-            return "/data/recomindations"
+            return "/recomindations"
         case .productRecommendations(let productId):
             return "/\(productId)/recomindation"
         case .receipts:
