@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import SwipeCellKit
+import Alamofire
 
 class ConcreteShoppingListVC: UIViewController {
 
@@ -26,7 +27,7 @@ class ConcreteShoppingListVC: UIViewController {
     
     // MARK: - Mock data
     
-    var data: [[Product]] = [[], [.dummy, .dummy, .dummyWithRecomendation], [.dummy, .dummy, .dummy]]
+    var data: [[Product]] = [[], [.dummy, .dummy, .dummyWithRecomendation], []]
     var cellsData: [CreateShoppingListSectionModel] = []
     
     var sumText: String? {
@@ -56,6 +57,24 @@ class ConcreteShoppingListVC: UIViewController {
                                            target: self,
                                            action: #selector(handleSearchAction))
         navigationItem.rightBarButtonItem = navBarAction
+        
+        NetworkService.shared.request(router: .recommendations) { (result: Result<APIResult<[RecommendationAPI]>>) in
+            switch result {
+            case .success(let recommendations):
+                var products: [Product] =  []
+                for rec in recommendations.result {
+                    var product = rec.product
+                    product.quantity = rec.quantity
+                    product.price = rec.price
+                    products.append(product.toProduct)
+                }
+                self.data[2] = products
+                self.cellsData = self.getViewModelsFromData()
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

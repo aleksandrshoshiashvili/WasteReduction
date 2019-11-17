@@ -50,6 +50,8 @@ class ProductSelectionTableViewCell: UITableViewCell {
     // MARK: - Interface
     
     func configure(withProduct product: ProductViewModel) {
+        self.viewModel = product
+        
         productNameLabel.text = product.name
         
         if product.isDomestic {
@@ -60,7 +62,6 @@ class ProductSelectionTableViewCell: UITableViewCell {
         domesticStatusLabel.isHidden = !product.isDomestic
         
         carbonLevelLabel.text = product.carbonLevel
-        
         recalculatePrices()
     }
     

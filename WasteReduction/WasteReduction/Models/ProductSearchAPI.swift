@@ -17,8 +17,8 @@ struct ProductSearchAPI: Codable {
     let isWasted: Bool
     let isFinished: Bool
     let co2: String?
-    let price: Double?
-    let quantity: Int?
+    var price: Double?
+    var quantity: Int?
 
 }
 
@@ -31,8 +31,8 @@ extension ProductSearchAPI {
     var toProduct: Product {
         return Product(id: productId,
                        name: name,
-                       price: .zero,
-                       quantity: .zero,
+                       price: price ?? .zero,
+                       quantity: Double(quantity ?? 0),
                        carbonLevel: Double(co2 ?? "") ?? .zero,
                        isDomestic: isDomestic,
                        iconUrl: pictureUrl)
