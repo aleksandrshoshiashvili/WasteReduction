@@ -13,6 +13,7 @@ struct RecommendationAPI: Codable {
     let recomindationId: Int
     let title: String
     let quantity: Int
+    let price: Double
     let productId: String
     let product: ProductSearchAPI
 

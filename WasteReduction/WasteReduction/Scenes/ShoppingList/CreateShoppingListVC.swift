@@ -9,6 +9,7 @@
 import UIKit
 import NotificationBannerSwift
 import SwipeCellKit
+import Alamofire
 
 struct ShoppingList: Equatable {
     let id: String
@@ -47,7 +48,7 @@ class CreateShoppingListVC: UIViewController {
     
     // MARK: - Mock data
         
-    var data: [[Product]] = [[], [], [.dummy, .dummy, .dummy]]
+    var data: [[Product]] = [[], [], []]
     var cellsData: [CreateShoppingListSectionModel] = []
     
     // MARK: - View life cycle
@@ -56,12 +57,11 @@ class CreateShoppingListVC: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        cellsData = getViewModelsFromData()
+        self.cellsData = self.getViewModelsFromData()
         
         tableView.allowsSelection = true
         tableView.allowsMultipleSelectionDuringEditing = true
         
-        tableView.reloadData()
         updateSaveButtonState()
         
         title = "Create new list"
@@ -72,6 +72,24 @@ class CreateShoppingListVC: UIViewController {
                                            target: self,
                                            action: #selector(handleSearchAction))
         navigationItem.rightBarButtonItem = navBarAction
+        
+        NetworkService.shared.request(router: .recommendations) { (result: Result<APIResult<[RecommendationAPI]>>) in
+            switch result {
+            case .success(let recommendations):
+                var products: [Product] =  []
+                for rec in recommendations.result {
+                    var product = rec.product
+                    product.quantity = rec.quantity
+                    product.price = rec.price
+                    products.append(product.toProduct)
+                }
+                self.data[2] = products
+                self.cellsData = self.getViewModelsFromData()
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

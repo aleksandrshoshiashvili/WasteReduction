@@ -94,6 +94,7 @@ class ProductWithRecommendaitonTableViewCell: SwipeTableViewCell {
     
     func configure(withProduct product: ProductWithRecommendaitonViewModel) {
         self.viewModel = product
+        
         productNameLabel.text = product.name
         recommendedTitleLabel.text = product.recommendedTitle
         recommendedNameLabel.text = product.recommendedProductName

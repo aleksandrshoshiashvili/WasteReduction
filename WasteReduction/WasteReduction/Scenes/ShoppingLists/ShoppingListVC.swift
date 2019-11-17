@@ -15,7 +15,7 @@ class ShoppingListVC: UIViewController {
     
     // MARK: - Mock data
     
-    var shoppingLists = ["Home" , "Work", "Kebab", "Mamba", "Vertungun", "Wroteben", "Arbaite", "Shnelia", "Schwine", "Long", "Data", "To", "Test", "Insets", "Of", "TableView"].map({ ShoppingList(id: UUID().uuidString, name: $0, products: []) })
+    var shoppingLists = ["Home" , "Work", "Travel", "Mamba", "Vertungun", "Wroteben", "Arbaite", "Shnelia", "Schwine", "Long", "Data", "To", "Test", "Insets", "Of", "TableView"].map({ ShoppingList(id: UUID().uuidString, name: $0, products: []) })
     var cellsData: [ShoppingListModel] = []
     
     // MARK: - View life cycle
