@@ -97,7 +97,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             
             let manuallyAction = UIAlertAction(title: "Find location", style: .default) { _ in
                 let vc = TrashMapsVC.instantiate()
-                self.present(vc, animated: true, completion: nil)
+                self.present(vc, animated: true, completion: {
+                    self.feedbackEntries = []
+                    self.updateSendFeedbackButtonState()
+                })
             }
             optionAlert.addAction(manuallyAction)
             
@@ -108,7 +111,10 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 let okAction = UIAlertAction(title: "Great!", style: .cancel, handler: nil)
                 facebookAlert.addAction(okAction)
                 facebookAlert.view.tintColor = Constants.Colors.theme
-                self.present(facebookAlert, animated: true, completion: nil)
+                self.present(facebookAlert, animated: true, completion: {
+                    self.feedbackEntries = []
+                    self.updateSendFeedbackButtonState()
+                })
             }
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
