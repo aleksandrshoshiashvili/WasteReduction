@@ -4,6 +4,17 @@
 
 # Images
 
+<p align="center">
+  <img style="display: inline; width: 40%"  src="presentation/imgs/Screenshot1001.png" alt="Screenshot_1"/>
+  <img style="display: inline; width: 40%"  src="presentation/imgs/Screenshot1002.png" alt="Screenshot_2"/>
+</p>
+
+<p align="center">
+  <img style="display: inline; width: 40%"  src="presentation/imgs/Screenshot1003.png" alt="Screenshot_1"/>
+  <img style="display: inline; width: 40%"  src="presentation/imgs/Screenshot1004.png" alt="Screenshot_2"/>
+</p>
+
+
 # Punchline
 
 Shopping lists with smart recommendations for sustainable consumption.
@@ -18,6 +29,7 @@ In the app users will be able to manage grocery shopping smartly by getting reco
 # Description
 
 We tried to solve the following customer needs:
+
 * Live healthier without effort
 * Be part of environment protection with little effort
 * Utilize food to reduce wasting
