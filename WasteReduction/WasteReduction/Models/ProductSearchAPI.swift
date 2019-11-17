@@ -13,7 +13,7 @@ struct ProductSearchAPI: Codable {
     let name: String
     let pictureUrl: String
     let productId: String
-    let manufacturerCountry: String
+    let manufacturerCountry: String?
     let isWasted: Bool
     let isFinished: Bool
     let co2: String?

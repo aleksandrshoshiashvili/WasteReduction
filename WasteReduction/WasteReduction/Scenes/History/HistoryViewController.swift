@@ -83,7 +83,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         
-        NetworkService.shared.request(router: .recommendations) { (result: Result<[RecommendationAPI]>) in
+        NetworkService.shared.request(router: .recommendations) { (result: Result<APIResult<[RecommendationAPI]>>) in
             switch result {
             case .success(let recommendations):
                 print(recommendations)
