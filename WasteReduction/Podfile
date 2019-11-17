@@ -14,5 +14,6 @@ target 'WasteReduction' do
   pod 'AIFlatSwitch'
   pod 'NotificationBannerSwift', '~> 3.0.0'
   pod 'SwipeCellKit'
-  
+  pod 'JGProgressHUD'
+  pod 'NVActivityIndicatorView'
 end
