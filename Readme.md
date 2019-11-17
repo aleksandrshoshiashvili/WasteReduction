@@ -5,13 +5,13 @@
 # Images
 
 <p align="center">
-  <img style="display: inline; max-width: 40%"  src="presentation/imgs/Screenshot1001.png" alt="Screenshot_1"/>
-  <img style="display: inline; max-width: 40%"  src="presentation/imgs/Screenshot1002.png" alt="Screenshot_2"/>
+  <img style="display: inline; width: 300px"  src="presentation/imgs/Screenshot1001.png" alt="Screenshot_1"/>
+  <img style="display: inline; width: 300px"  src="presentation/imgs/Screenshot1002.png" alt="Screenshot_2"/>
 </p>
 
 <p align="center">
-  <img style="display: inline; max-width: 40%"  src="presentation/imgs/Screenshot1003.png" alt="Screenshot_3"/>
-  <img style="display: inline; max-width: 40%"  src="presentation/imgs/Screenshot1004.png" alt="Screenshot_4"/>
+  <img style="display: inline; mwidth: 300px"  src="presentation/imgs/Screenshot1003.png" alt="Screenshot_3"/>
+  <img style="display: inline; width: 300px"  src="presentation/imgs/Screenshot1004.png" alt="Screenshot_4"/>
 </p>
 
 
