@@ -3,6 +3,7 @@
 // Running on macOS 10.15
 
 import UIKit
+import Alamofire
 
 class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
@@ -102,8 +103,22 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
     //MARK: - UISearchBarDelegate, UISearchResultsUpdating
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-        cellsData = notFiltered.filter({$0.name.contains(searchText)})
+        
+        NetworkService.shared.request(router: .search(query: searchText)) { (result: Result<APIResult<[SearchItemAPI]>>) in
+            switch result {
+            case .success(let data):
+                var products: [Product] = []
+                for item in data.result {
+                    var product = item.product
+                    product.price = item.price
+                    product.quantity = item.quantity
+                    products.append(product.toProduct)
+                }
+                self.cellsData = products
+            case .failure:
+                self.cellsData = []
+            }
+        }
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

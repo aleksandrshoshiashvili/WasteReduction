@@ -18,7 +18,9 @@ class NetworkService {
             let decoder = JSONDecoder()
             let model: Result<T> = decoder.decodeResponse(from: dataResponse)
             completion(model)
-        }        
+        }  .responseJSON { (resp) in
+            print(resp)
+        }
     }
     
 }

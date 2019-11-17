@@ -30,6 +30,7 @@ enum APIRouter: URLRequestConvertible {
     case recommendations
     case productRecommendations(productId: String)
     case receipts
+    case search(query: String)
     
     // MARK: - HTTPMethod
     
@@ -47,20 +48,42 @@ enum APIRouter: URLRequestConvertible {
             return "/\(productId)/recomindation"
         case .receipts:
             return "/receipts"
+        case .search:
+            return "/products"
         }
     }
     
     // MARK: - Parameters
     private var parameters: Parameters? {
-        return nil
+        switch self {
+        case .search(let query):
+            return ["name": query, "amount": "10"]
+        default:
+            return nil
+        }
     }
     
     // MARK: - URLRequestConvertible
     
     func asURLRequest() -> URLRequest {
-        let url = URL(string: ProductionServer.baseURL)!
         
-        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        var components = URLComponents()
+        components.scheme = "http"
+        components.host = "84.201.160.239"
+        components.port = 9395
+        components.path = "/data" + path
+        
+//        let url = URL(string: ProductionServer.baseURL)!
+        
+//        var urlRequest = URLRequest(url: url.appendingPathComponent(path))
+        
+        // Parameters
+        if let parameters = parameters {
+            let aa = parameters.map({ URLQueryItem(name: $0.key, value: $0.value as? String) })
+            components.queryItems = aa
+        }
+        
+        var urlRequest = URLRequest(url: components.url!)
         
         // HTTP Method
         urlRequest.httpMethod = method.rawValue
@@ -68,15 +91,7 @@ enum APIRouter: URLRequestConvertible {
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
- 
-        // Parameters
-        if let parameters = parameters {
-            do {
-                urlRequest.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: [])
-            } catch {
-                print(AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error)))
-            }
-        }
+        
         
         return urlRequest
     }
