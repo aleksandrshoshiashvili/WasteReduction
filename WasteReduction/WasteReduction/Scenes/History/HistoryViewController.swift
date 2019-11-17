@@ -76,6 +76,12 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.dataSource = self
         tableView.delegate = self
         tableView.registerReuseFootHeaderViews(with: [HistoryReceiptSectionHeaderView.reuseIdentifier])
+        let insets = UIEdgeInsets(top: view.safeAreaInsets.top,
+                                  left: 0,
+                                  bottom: view.safeAreaInsets.bottom,
+                                  right: 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
         
         NetworkService.shared.request(router: .recommendations) { (result: Result<[RecommendationAPI]>) in
             switch result {

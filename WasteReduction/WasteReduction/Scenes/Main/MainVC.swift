@@ -29,7 +29,10 @@ public class MainVC: UIViewController {
     pagingViewController.dataSource = self
     
     self.pagingViewController = pagingViewController
-    
+    self.pagingViewController?.view.clipsToBounds = false
+    self.pagingViewController?.view.layer.masksToBounds = false
+    self.pagingViewController?.pageViewController.view.clipsToBounds = false
+    self.pagingViewController?.pageViewController.view.layer.masksToBounds = false
     setupOptions()
     
     navigationController?.isHeroEnabled = true
