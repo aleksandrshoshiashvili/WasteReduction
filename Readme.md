@@ -1,21 +1,6 @@
-# Name
+# FOODLY
 
-**FOODLY** - mobile application for __Junction 2019 Hackathon__
-
-# Images
-
-<p align="center">
-  <img width=40% height=40%  src="presentation/imgs/Screenshot1001.png" alt="Screenshot_1"/>
-  <img width=40% height=40% src="presentation/imgs/Screenshot1002.png" alt="Screenshot_2"/>
-</p>
-
-<p align="center">
-  <img width=40% height=40%   src="presentation/imgs/Screenshot1003.png" alt="Screenshot_3"/>
-  <img width=40% height=40%  src="presentation/imgs/Screenshot1004.png" alt="Screenshot_4"/>
-</p>
-
-
-# Punchline
+__Junction 2019 Hackathon__
 
 Shopping lists with smart recommendations for sustainable consumption.
 
@@ -26,6 +11,23 @@ In the app users will be able to manage grocery shopping smartly by getting reco
 3. Reduce food wasting 
 4. Buy more local food 
 
+Our solution can be easily implemented to existing K-Group mobile application.
+
+**[Backend repository](https://github.com/alsedi28/WasteReduction)**
+
+# Images
+
+<p align="center">
+  <img width=40% height=40%  src="presentation/imgs/Screenshot1001.png" alt="Screenshot_1"/>
+  <img width=40% height=40% src="presentation/imgs/Screenshot1004.png" alt="Screenshot_2"/>
+</p>
+
+<p align="center">
+  <img width=40% height=40%   src="presentation/imgs/Screenshot1003.png" alt="Screenshot_3"/>
+  <img width=40% height=40%  src="presentation/imgs/Screenshot1002.png" alt="Screenshot_4"/>
+</p>
+
+
 # Description
 
 We tried to solve the following customer needs:
@@ -35,7 +37,7 @@ We tried to solve the following customer needs:
 * Utilize food to reduce wasting
 * Have smarter grocery shopping
 
-Our solution is smart shopping lists within mobile application.
+Our solution is **smart shopping lists** within mobile application.
 
 In the app users will be able to manage grocery shopping smartly by getting recommendations in order to:
 
@@ -51,6 +53,12 @@ The business will get the following benefits by implementing our solution:
 3. Contribution to reputation of socially responsible organisation
 4. Switch customers to local suppliers
 
-Our solution can be easily implemented to existing K-Group mobile application.
-
 Our solution solves the problem of more sustainable choices in peoples everyday lives and consumption.
+
+# Our team
+
+1. [Alexander Shoshiashvili](https://github.com/aleksandrshoshiashvili/) _iOS Developer_
+2. [Dmytro Antonchenko](https://github.com/DemonionFF) _iOS Developer_
+3. [Sergey Ignatushchenko](https://github.com/alsedi28) _C# Backend Developer_
+4. [Maksim Shevchenko](https://github.com/maks-sh) _Analyst_
+5. Ruslan Ledovskii _Product Manager_
