@@ -32,7 +32,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Milk 3.2%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXw-la-o5U">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Milk 3.2%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AXw-la-o5U">
                                 <rect key="frame" x="56" y="19" width="66" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
@@ -44,7 +44,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 x 3.5$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eel-J9-gZt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="2 x 3.5$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eel-J9-gZt">
                                 <rect key="frame" x="376" y="32" width="50" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
@@ -117,6 +117,7 @@
                         <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dWn-yT-fdf" firstAttribute="centerY" secondItem="33a-Rj-CHf" secondAttribute="centerY" id="5fX-Up-8zT"/>
+                            <constraint firstItem="Eel-J9-gZt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="AXw-la-o5U" secondAttribute="trailing" constant="8" id="5gk-BH-IV8"/>
                             <constraint firstItem="O3U-9g-0dE" firstAttribute="leading" secondItem="p4Y-wi-DMN" secondAttribute="leading" constant="8" id="6x0-Lv-vtr"/>
                             <constraint firstItem="AXw-la-o5U" firstAttribute="centerY" secondItem="Gzn-VW-hg5" secondAttribute="centerY" id="BQp-us-mBD"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="O3U-9g-0dE" secondAttribute="bottom" constant="8" id="JZf-bE-CTZ"/>

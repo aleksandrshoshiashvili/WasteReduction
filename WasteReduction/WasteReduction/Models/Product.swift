@@ -69,11 +69,11 @@ extension Product {
     }
     
     static var dummy: Product {
-        return Product(id: UUID().uuidString, name: "Manka", price: 7, quantity: 1, iconUrl: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
+        return Product(id: UUID().uuidString, name: "Keffir 2.0", price: 4.1, quantity: 2, iconUrl: "https://instamart.ru/spree/products/81441/product/86040.jpg?1538752678")
     }
     
     static var dummyWithRecomendation: Product {
-        let product = Product(id: UUID().uuidString, name: "Kefir", price: 1.5, quantity: 3, iconUrl: "https://k-file-storage-qa.imgix.net/f/k-ruoka/product/0490000312492")
+        let product = Product(id: UUID().uuidString, name: "Kefir", price: 3.8, quantity: 3, iconUrl: "https://pp.userapi.com/c830408/v830408978/f3193/d0ciSh2whYw.jpg")
         product.recomendation = .dummy
         product.recomendationTitle = "You can reduce Carbon level buying similar product:"
         return product

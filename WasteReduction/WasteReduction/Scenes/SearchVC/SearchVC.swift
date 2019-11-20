@@ -104,14 +104,13 @@ class SearchVC: UIViewController, UISearchBarDelegate, UISearchResultsUpdating {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        NetworkService.shared.request(router: .search(query: searchText)) { (result: Result<APIResult<[SearchItemAPI]>>) in
+        NetworkService.shared.request(router: .search(query: searchText)) { (result: Result<APIResult<[ProductSearchAPI]>>) in
             switch result {
             case .success(let data):
                 var products: [Product] = []
                 for item in data.result {
-                    var product = item.product
-                    product.price = item.price
-                    product.quantity = item.quantity
+                    var product = item
+                    product.price = Double.random(in: 0...7)
                     products.append(product.toProduct)
                 }
                 self.cellsData = products

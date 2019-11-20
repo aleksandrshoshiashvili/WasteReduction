@@ -10,11 +10,11 @@ import UIKit
 
 struct SearchItemAPI: Codable {
     
-    let price: Double
-    let product: ProductSearchAPI
-    let productId: String
-    let quantity: Int
-    let recomindationId: Int
-    let title: String
+    let price: Double?
+    let product: ProductSearchAPI?
+    let productId: String?
+    let quantity: Int?
+    let recomindationId: Int?
+    let title: String?
     
 }

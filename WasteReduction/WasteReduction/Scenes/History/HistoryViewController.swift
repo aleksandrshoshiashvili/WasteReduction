@@ -25,7 +25,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Mock data
     
     static var mockReceiptConsumptionsStats: ConsumptionsStats {
-        return ConsumptionsStats(domesticDetails: "33% of purchases", wasteDetails: "11% of waste", carbonDetails: "8 kg CO2 / product")
+        return ConsumptionsStats(domesticDetails: "33% of purchases", wasteDetails: "11% of waste", carbonDetails: "8 g. CO2 / product")
     }
     
     static var mockProducts: [Product] {
@@ -63,7 +63,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     var cellsData: [HistorySectionModel] = [HistorySectionModel(type: .stats,
                                                                 consumptionsStats: ConsumptionsStats(domesticDetails: "76% of purchases",
                                                                                                      wasteDetails: "34% of waste",
-                                                                                                     carbonDetails: "123 kg CO2 / product")),
+                                                                                                     carbonDetails: "123 g. CO2 / product")),
                                             HistorySectionModel(type: .receipt,
                                                                 receipt: HistoryViewController.mockReceipt)]
     
@@ -99,7 +99,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
 
                     let stats = ConsumptionsStats(domesticDetails: "\(Int.random(in: 10...98))% of purchases",
                         wasteDetails: "\(Int.random(in: 5...70))% of waste",
-                        carbonDetails: "\(Int.random(in: 5...65)) kg CO2 / product")
+                        carbonDetails: "\(Int.random(in: 5...65)) g. CO2 / product")
 
                     var products = [Product] ()
                     for item in object.receiptItems {
@@ -115,7 +115,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
                 var newCellsData = [HistorySectionModel(type: .stats,
                                                         consumptionsStats: ConsumptionsStats(domesticDetails: "\(Int.random(in: 10...33))% of purchases",
                                                             wasteDetails: "\(Int.random(in: 30...77))% of waste",
-                                                            carbonDetails: "\(Int.random(in: 22...99)) kg CO2 / product"))]
+                                                            carbonDetails: "\(Int.random(in: 22...99)) g. CO2 / product"))]
                 for receipt in receipts {
                     let cons = ConsumptionsStats(domesticDetails: receipt.domesticStat.details, wasteDetails: receipt.wasteStat.details, carbonDetails: receipt.carbonStat.details)
                     newCellsData.append(HistorySectionModel(type: .receipt, consumptionsStats: cons, receipt: receipt))

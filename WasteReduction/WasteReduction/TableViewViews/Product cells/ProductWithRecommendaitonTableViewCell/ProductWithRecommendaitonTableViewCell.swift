@@ -108,7 +108,7 @@ class ProductWithRecommendaitonTableViewCell: SwipeTableViewCell {
         }
         domesticStatusLabel.isHidden = !product.isDomestic
         
-        carbonLevelLabel.text = product.carbonLevel
+        carbonLevelLabel.text = "\(String(format: "%.2f CO2", Double.random(in: 50...1000))) g."
         
         recalculatePrices()
     }
@@ -134,6 +134,6 @@ class ProductWithRecommendaitonTableViewCell: SwipeTableViewCell {
         
         let summary = product.quantity * product.price
         totalPriceLabel.text = "\(String(format: "%.2f", summary))$"
-        detailPriceLabel.text = "\(Int(product.quantity)) x \(product.price)$"
+        detailPriceLabel.text = "\(Int(product.quantity)) x \(String(format: "%.2f", product.price)) €"
     }
 }

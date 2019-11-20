@@ -18,7 +18,7 @@ class SearchProductCell: UITableViewCell {
         
         productImageView.setImage(urlString: product.iconUrl)
         productNameLabel.text = product.name
-        productPriceLabel.text = String(format: "%.2f", product.price) + "$"
+        productPriceLabel.text = String(format: "%.2f", product.price) + "€"
     }
     
 }
