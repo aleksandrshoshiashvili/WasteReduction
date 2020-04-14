@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77656C76EBA87B3C44138D99 /* Pods_WasteReduction.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8D2F4814F5CF81B2A7C825 /* Pods_WasteReduction.framework */; };
+		898E49F42445F9AB00857EC2 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E49F32445F9AB00857EC2 /* Test.swift */; };
 		89DF856A237FEAF800FC9A06 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF8569237FEAF800FC9A06 /* ProductTableViewCell.swift */; };
 		89DF856C237FEC5A00FC9A06 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 89DF856B237FEC5A00FC9A06 /* ProductTableViewCell.xib */; };
 		89DF856F237FF0C800FC9A06 /* TitleHeaderTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DF856E237FF0C800FC9A06 /* TitleHeaderTableViewHeaderFooterView.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		898E49F32445F9AB00857EC2 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		89DF8569237FEAF800FC9A06 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		89DF856B237FEC5A00FC9A06 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		89DF856E237FF0C800FC9A06 /* TitleHeaderTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				9F0BFE55237F693300699ECB /* UITextView+Extensions.swift */,
 				9F0BFE54237F693300699ECB /* UIView+Extensions.swift */,
 				9F0BFE58237F693300699ECB /* UIViewController+ShareDialog.swift */,
+				898E49F32445F9AB00857EC2 /* Test.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				9F44A78C237FE6B6006FE2BF /* SearchVC.swift in Sources */,
 				89DF8574237FF46600FC9A06 /* InputFieldTableViewCell.swift in Sources */,
 				9F44A786237FA123006FE2BF /* ShoppingListTableViewCell.swift in Sources */,
+				898E49F42445F9AB00857EC2 /* Test.swift in Sources */,
 				9F0BFE73237F807C00699ECB /* HistoryProductCell.swift in Sources */,
 				9F0BFE5B237F693300699ECB /* UIView+Extensions.swift in Sources */,
 				89FB5037237F2C79007A9C21 /* HistoryViewController.swift in Sources */,
